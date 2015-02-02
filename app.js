@@ -4,6 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+//get database config
+var database = require('./config/database');
 
 
 //export all controller
@@ -13,6 +17,14 @@ var home = require('./routes/home');
 var register = require('./routes/register');
 
 var app = express();
+
+
+//load database
+mongoose.connect(database.host);
+mongoose.connection.on("error", console.error.bind(console,'connection error:'));
+mongoose.connection.on("open", function(ref){
+    console.log("Connection database success");
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
