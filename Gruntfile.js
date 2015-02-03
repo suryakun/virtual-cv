@@ -15,7 +15,7 @@ module.exports = function(grunt){
 				output: '.+',
 				debug: true,
 				breakOnFirstLine: false,
-				logs: undefined
+				logs: 'logfile.js'
 			},
 			dev: {
 				options: {
