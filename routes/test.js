@@ -21,14 +21,14 @@ router.get('/create', function(request,response){
 		}],
 		experiances: [{
 			company_name: 'wgs',
-			start_date: new Date.now(),
-			end_date: new Date.now(),
+			start_date: Date.now(),
+			end_date: Date.now(),
 			job_desc: 'consulting'
 		},
 		{
 			company_name: 'inmagine',
-			start_date: new Date.now(),
-			end_date: new Date.now(),
+			start_date: Date.now(),
+			end_date: Date.now(),
 			job_desc: 'programming'
 		}],
 		portfolios: [{
@@ -40,7 +40,7 @@ router.get('/create', function(request,response){
 			images: [{ url: '/testt.com'}, {url:'testtt.com'}],
 			description: 'tttttt'
 		}],
-		is_active : true
+		isactive : true
 	});
 
 	user.save(function(error){

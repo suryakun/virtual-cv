@@ -75,11 +75,11 @@ var UserSchema = new Schema({
 						type: String,
 						require: false
 					}}],
-	created_at: {
+	createdat: {
 		type: Date,
 		default: Date.now
 	},
-	is_active: {
+	isactive: {
 		type: Boolean
 	}
 });
@@ -87,7 +87,7 @@ var UserSchema = new Schema({
 UserSchema.pre('save', function(next){
 	var user = this;
 	bcrypt.hash(user.password, 10, function(error, hash){
-		if (err) return next(error);
+		if (error) return next(error);
 		user.password = hash;
 		next()
 	});
@@ -110,4 +110,4 @@ UserSchema.methods.comparePassword = function(password, next){
 	});
 };
 
-module.exports = mongoose.model('User', Schema);
+module.exports = mongoose.model('User', UserSchema);
