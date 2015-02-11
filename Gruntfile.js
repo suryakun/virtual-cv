@@ -33,49 +33,45 @@ module.exports = function(grunt){
 				}
 			}
 		},
-		jshint: {
-			files: ['public/modules/*.js','public/services/*.js'],
-			options:{}
-		},
 		watch: {
 			options: {
 				livereload: true
 			},
 			express: {
-				files: ['<%= jshint.files  %>'],
+				files: ['public/modules/*.js','public/services/*.js','public/javascripts/*.js'],
 				tasks: ['express:dev','jshint'],
 				options: {
 					spawn: false
 				}
 			}
-		},
-		concat: {
-			options: {
-				separator :';'
-			},
-			dist: {
-				src: ['<%= jshint.files %>'],
-				dest: 'public/javascripts/vcv.js'
-			}
-		},
-		uglify: {
-			options: {
-				banner : '/* vcv script */'
-			},
-			dist: {
-				files :{
-					'public/javascripts/vcv.min.js' : '<%= concat.dist.dest %>'
-				}
-			}
-		},		
+		}
+		// concat: {
+		// 	options: {
+		// 		separator :';'
+		// 	},
+		// 	dist: {
+		// 		src: ['public/modules/*.js','public/services/*.js','public/javascripts/*.js'],
+		// 		dest: 'public/javascripts/vcv.js'
+		// 	}
+		// },
+		// uglify: {
+		// 	options: {
+		// 		banner : '/* vcv script */'
+		// 	},
+		// 	dist: {
+		// 		files :{
+		// 			'public/javascripts/vcv.min.js' : '<%= concat.dist.dest %>'
+		// 		}
+		// 	}
+		// },		
 	});
 
 	grunt.loadNpmTasks('grunt-express-server');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
+	// grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	// grunt.loadNpmTasks('grunt-contrib-concat');
+	// grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('default', ['jshint','concat','uglify','express:dev','watch']);
-
-};
+	// grunt.registerTask('default', ['concat','uglify','express:dev','watch']);
+	grunt.registerTask('default', ['express:dev','watch']);
+}
