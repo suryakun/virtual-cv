@@ -12,6 +12,10 @@ var UserSchema = new Schema({
 		type: String,
 		require: true
 	},
+	gender: {
+		type: String,
+		require: true 
+	},
 	username: {
 		type: String,
 		require: true
@@ -45,6 +49,16 @@ var UserSchema = new Schema({
 			type: String,
 			require: false
 		}		
+	}],
+	skill: [{
+		name: {
+			type: String,
+			require: false
+		},
+		level: {
+			type: String,
+			require:false
+		}
 	}],
 	experiences: [{ company_name: {
 						type: String,

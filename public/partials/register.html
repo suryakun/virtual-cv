@@ -1,7 +1,7 @@
 
 <div class="col-md-12 column">
 	<tabset justified="true">
-	    <tab heading="Personal Info">
+	    <tab heading="Personal Info" disabled="tab.personal" active="!tab.personal">
 	    	<div style="padding-top:30px">
 		    	<form class="form-horizontal" role="form">
 		    		<div class="col-md-12 column">
@@ -13,76 +13,142 @@
 		    		<div class="form-group">
 						 <label for="inputFullname" class="col-sm-2 control-label">Full Name</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="inputFullname">
+							<input type="text" class="form-control" id="inputFullname" ng-model="bio.fullname">
 						</div>
 					</div>
 					<div class="form-group">
+						 <label for="inputGender1" class="col-sm-2 control-label">Male</label>
+						<div class="col-sm-2">
+							<input type="radio" name="gender" id="inputGender1" value="male" checked ng-model="bio.gender">
+						</div>
+						<label for="inputGender2" class="col-sm-2 control-label">Female</label>
+						<div class="col-sm-2">
+							<input type="radio" name="gender" id="inputGender2" value="female" ng-model="bio.gender">
+						</div>
+					</div>					
+					<div class="form-group">
 						 <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 						<div class="col-sm-10">
-							<input type="email" class="form-control" id="inputEmail">
+							<input type="email" class="form-control" id="inputEmail" ng-model="bio.email">
 						</div>
 					</div>
 					<div class="form-group">
 						 <label for="inputAddress" class="col-sm-2 control-label">Address</label>
 						<div class="col-sm-10">
-							<textarea class="form-control" id="inputAddress" rows="3"></textarea>
+							<textarea class="form-control" id="inputAddress" rows="3" ng-model="bio.address"></textarea>
 						</div>
 					</div>				
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							 <button type="button" class="btn btn-default">Next</button>
+							 <button type="button" class="btn btn-default" ng-click="nextToEducation()">Next</button>
 						</div>
 					</div>
 				</form>
 			</div>	    	
 	    </tab>
-	    <tab heading="Education">
+	    <tab heading="Education" disabled="tab.education" active="!tab.education">
 	    	<div style="padding-top:30px">
 		    	<form class="form-horizontal" role="form">
-		    		<div>
+		    		<div ng-repeat="college in colleges">
 						<div class="form-group">
-							 <label for="inputUniversity" class="col-sm-2 control-label">Name Of University</label>
+							 <label class="col-sm-2 control-label">Name Of University</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputUniversity">
+								<input type="text" class="form-control" ng-model="college.name">
 							</div>
 						</div>
 						<div class="form-group">
-							 <label for="inputDegree" class="col-sm-2 control-label">Degree</label>
+							 <label class="col-sm-2 control-label">Degree</label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="inputDegree">
+								<input type="text" class="form-control" ng-model="college.degree">
 							</div>
 						</div>
 					</div>					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							 <button type="button" class="btn btn-default">+</button>
-							 <button type="button" class="btn btn-default">Next</button>
+							 <button type="button" class="btn btn-default" ng-click="removeCollege()" ng-show="(colleges.length > 1)">-</button>
+							 <button type="button" class="btn btn-default" ng-click="addCollege()" ng-show="(colleges.length < 7)">+</button>
+							 <button type="button" class="btn btn-default" ng-click="addSkill()" ng-show="(skills.length<1)">Add Skill list</button>
+							 <button type="button" class="btn btn-default" ng-click="nextToPersonal()">Back</button>
+							 <button type="button" class="btn btn-default" ng-click="nextToExperience()">Next</button>
 						</div>						
 					</div>
 				</form>
 			</div>
-	    </tab>
-	    <tab heading="Experiences">
-	    	<div style="padding-top:30px">
+			<div style="padding-top:30px" ng-show="(skills.length>0)">
 		    	<form class="form-horizontal" role="form">
-		    		<div>
+		    		<div ng-repeat="skill in skills">
 						<div class="form-group">
-							 <label for="inputCompany" class="col-sm-2 control-label">Company Name</label>
+							<label class="col-sm-2 control-label">Skill</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputCompany">
+								<input type="text" class="form-control" ng-model="skill.name">
 							</div>
 						</div>
 						<div class="form-group">
-							 <label for="inputDegree" class="col-sm-2 control-label">Degree</label>
+							<label class="col-sm-2 control-label">Level</label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="inputDegree">
+								<select class="form-control" ng-model="skill.level">
+									<option>Beginner</option>		
+									<option>Intermediate</option>		
+									<option>Expert</option>		
+								</select>
 							</div>
 						</div>
 					</div>					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							 <button type="button" class="btn btn-default">+</button>
-							 <button type="button" class="btn btn-default">Next</button>
+							 <button type="button" class="btn btn-default" ng-click="removeSkill()">-</button>
+							 <button type="button" class="btn btn-default" ng-click="addSkill()" ng-show="(skills.length < 20)">+</button>							 
+						</div>						
+					</div>
+				</form>
+			</div>			
+	    </tab>
+	    <tab heading="Experiences" disabled="tab.experience" active="!tab.experience">
+	    	<div style="padding-top:30px">
+		    	<form class="form-horizontal" role="form">
+		    		<div ng-repeat="experience in experiences">
+						<div class="form-group">
+							 <label class="col-sm-2 control-label">Company Name</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" ng-model="experience.company_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">From</label>
+							<div class="row">
+						        <div class="col-md-6">
+						            <p class="input-group">
+						              <input type="text" class="form-control" datepicker-popup="shortDate" ng-model="experience.start_date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+						              <span class="input-group-btn">
+						                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+						              </span>
+						            </p>
+						        </div>
+						    </div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Until</label>
+							<div class="row">
+						        <div class="col-md-6">
+						            <p class="input-group">
+						              <input type="text" class="form-control" datepicker-popup="shortDate" ng-model="experience.end_date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+						              <span class="input-group-btn">
+						                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+						              </span>
+						            </p>
+						        </div>
+						    </div>
+						</div>
+						<label class="col-sm-2 control-label">Job Description</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" rows="3" ng-model="experience.job_desc"></textarea>
+						</div>
+					</div>					
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							 <button type="button" class="btn btn-default" ng-click="removeExperience()" ng-show="(experiences.length > 1)">-</button>
+							 <button type="button" class="btn btn-default" ng-click="addExperience()" ng-show="(experiences.length < 20)">+</button>
+							 <button type="button" class="btn btn-default" ng-click="nextToEducation()">Back</button>
 						</div>						
 					</div>
 				</form>

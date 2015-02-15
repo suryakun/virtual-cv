@@ -31,16 +31,22 @@ router.post('/avatar', [multer({
 				x: 0,
 				y: 0
 			}).then(function(image){
-				console.log('crop =');
 				console.log(image);
 			},function(err){
 				console.log(err);
 			});
 		}
 	}), function(req, res){
-	    console.log(req.body); // form fields
-	    console.log(req.files); // form files	   
+		var fullpath = '/assets/avatar/' + req.files.file.name;
+	    console.log(req.files.file); // form files	    
+	    console.log(fullpath); // form files	    
+	    res.end(fullpath);
 	}
 ]);
+
+router.get('/avatar', function(req,res){
+
+});
+
 
 module.exports = router;

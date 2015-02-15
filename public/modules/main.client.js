@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp',['ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.tpls','angularFileUpload']);
+var app = angular.module('myApp',['ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload']);
 
 app.config(['$routeProvider','$locationProvider','$httpProvider',function($routeProvider,$locationProvider,$httpProvider) {
 	$routeProvider
@@ -15,17 +15,77 @@ app.config(['$routeProvider','$locationProvider','$httpProvider',function($route
 	$locationProvider.html5Mode(true);
 }]);
 
-app.controller('registerController', ['$scope','$http', '$upload', function($scope,$http,$upload){
+app.controller('registerController', ['$scope','$http', '$upload', function($scope,$http,$upload){	
+
+	/* Tab Navigation */
+	$scope.tab = {
+		personal : false,
+		education: true,
+		experience: true
+	}
+	$scope.nextToEducation = function(){
+		$scope.tab.personal = true;		
+		$scope.tab.education = false;
+		$scope.tab.experience = true;
+		// console.log($scope.bio);
+	}
+	$scope.nextToPersonal = function(){
+		$scope.tab.personal = false;
+		$scope.tab.education = true;		
+		$scope.tab.experience = true;
+	}
+	$scope.nextToExperience = function(){
+		$scope.tab.personal = true;
+		$scope.tab.education = true;		
+		$scope.tab.experience = false;
+		// console.log($scope.colleges);
+		// console.log($scope.skills);
+	}
+
+	/* Biodata user model */
 	$scope.bio = {
 		fullname:undefined,
 		email:undefined,
 		phone:undefined,
 		address:undefined,
-		avatar: undefined
+		avatar: undefined,
+		gender: undefined
 	}
 
+	/* College user model */
+	$scope.colleges = [{name: undefined, degree: undefined}];
+	$scope.addCollege = function(){
+		$scope.colleges.push({name: undefined, degree: undefined});		
+	}
+	$scope.removeCollege = function(){
+		$scope.colleges.splice($scope.colleges.length -1,1);
+	}
+
+	/* Skill user model */
+	$scope.skills = [];
+	$scope.addSkill = function(){
+		$scope.skills.push({name:undefined,level:undefined});
+	}
+	$scope.removeSkill = function(){
+		$scope.skills.splice($scope.skills -1,1);
+	}
+
+	/* Experience user model */
+	$scope.experiences = [];
+	$scope.addExperience = function(){
+		$scope.experiences.push({company_name:undefined,
+								start_date:undefined,
+								end_date:undefined,
+								job_desc:undefined});
+	}
+	$scope.removeExperience = function(){
+		$scope.experiences.splice($scope.experiences -1,1);
+	}	
+
+
+	/* Upload and get avatar */
 	$scope.getAvatar = function(){
-		return $scope.bio.avatar !== undefined ? $scope.bio.avatar : '/images/default.jpg';		
+		return $scope.bio.avatar !== undefined ? $scope.bio.avatar : '/images/default.png';		
 	}
 
 	$scope.upload = function(files){
@@ -42,11 +102,12 @@ app.controller('registerController', ['$scope','$http', '$upload', function($sco
 					console.log('Progress '+ progressPercentage + '% ' + evt.config.file.name );
 				})
 				.success(function(data,status,header,config){
-					console.log(config);
-					$scope.bio.avatar = config.url;
+					console.log(data);
+					$scope.bio.avatar = data;
 				});
 			};
 		};
 	}
+
 
 }]);
