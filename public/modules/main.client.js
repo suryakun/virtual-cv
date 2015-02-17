@@ -15,7 +15,7 @@ app.config(['$routeProvider','$locationProvider','$httpProvider',function($route
 	$locationProvider.html5Mode(true);
 }]);
 
-app.controller('registerController', ['$scope','$http', '$upload', function($scope,$http,$upload){	
+app.controller('registerController', ['$scope','$http', '$upload', '$timeout', function($scope,$http,$upload,$timeout){	
 
 	/* Tab Navigation */
 	$scope.tab = {
@@ -107,6 +107,14 @@ app.controller('registerController', ['$scope','$http', '$upload', function($sco
 				});
 			};
 		};
+	}
+
+	$scope.datePickerState = {};
+	$scope.open = function($event,OpenedState){
+		$event.preventDefault();
+	    $event.stopPropagation();
+
+	    $scope.datePickerState[OpenedState] = !$scope.datePickerState[OpenedState];
 	}
 
 
