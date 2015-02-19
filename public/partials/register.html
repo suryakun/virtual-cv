@@ -104,9 +104,9 @@
 			</div>			
 	    </tab>
 	    <tab heading="Experiences" disabled="tab.experience" active="!tab.experience">
-	    	<div style="padding-top:30px">
+	    	<div style="padding-top:30px">	    		
 		    	<form class="form-horizontal" role="form">
-		    		<div ng-repeat="experience in experiences">
+		    		<div ng-repeat="experience in experiences" >
 						<div class="form-group">
 							 <label class="col-sm-2 control-label">Company Name</label>
 							<div class="col-sm-10">
@@ -118,7 +118,7 @@
 							<div class="row">
 						        <div class="col-md-6">
 						            <p class="input-group">
-						              <input type="text" class="form-control" datepicker-popup="shortDate" ng-model="dt" is-open="datePickerState.firstState" ng-required="true" close-text="Close" />
+						              <input type="text" class="form-control" datepicker-popup="shortDate" ng-model="experience.start_date" is-open="datePickerState.firstState" ng-required="true" close-text="Close" />
 						              <span class="input-group-btn">
 						                <button type="button" class="btn btn-default" ng-click="open($event,'firstState')"><i class="glyphicon glyphicon-calendar"></i></button>
 						              </span>
@@ -131,9 +131,9 @@
 							<div class="row">
 						        <div class="col-md-6">
 						            <p class="input-group">
-						            	<input type="text" class="form-control" datepicker-popup="shortDate" ng-model="experience.end_date" is-open="opened2" min-date="minDate" ng-required="true" close-text="Close" ng-blur="closeDate2($event)" />
-						              	<span class="input-group-btn">
-						                <button type="button" class="btn btn-default" ng-click="openDate2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+						            	<input type="text" class="form-control" datepicker-popup="shortDate" ng-model="experience.end_date" is-open="datePickerState.secondState" ng-required="true" close-text="Close" />
+						              <span class="input-group-btn">
+						                <button type="button" class="btn btn-default" ng-click="open($event,'secondState')"><i class="glyphicon glyphicon-calendar"></i></button>
 						              </span>
 						            </p>
 						        </div>
@@ -143,13 +143,42 @@
 						<div class="col-sm-10">
 							<textarea class="form-control" rows="3" ng-model="experience.job_desc"></textarea>
 						</div>
-					</div>					
+					</div>
+
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							 <button type="button" class="btn btn-default" ng-click="removeExperience()" ng-show="(experiences.length > 1)">-</button>
 							 <button type="button" class="btn btn-default" ng-click="addExperience()" ng-show="(experiences.length < 20)">+</button>
+							 <button type="button" class="btn btn-default" ng-click="addPortfolio()" ng-show="(portfolios.length < 1)">Add Portfolio List</button>
 							 <button type="button" class="btn btn-default" ng-click="nextToEducation()">Back</button>
+							 <button type="button" class="btn btn-default" ng-click="finishRegistration()">Create My CV</button>
 						</div>						
+					</div>
+				</form>
+			</div>
+			<div style="padding-top:30px" ng-show="portfolios.length > 0">	    		
+		    	<form class="form-horizontal" role="form">
+					<div ng-show="portfolios.length > 0">
+						<div ng-repeat="porfolio in portfolios" >
+							<div class="form-group">
+								 <label class="col-sm-2 control-label">Porfolio Name</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" ng-model="porfolio.title">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Porfolio Description</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" ng-model="porfolio.description">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								 <button type="button" class="btn btn-default" ng-click="removePortfolio()" ng-show="(portfolios.length > 0)">-</button>
+								 <button type="button" class="btn btn-default" ng-click="addPortfolio()" ng-show="(portfolios.length < 20)">+</button>						 						 
+							</div>						
+						</div>
 					</div>
 				</form>
 			</div>

@@ -88,7 +88,12 @@ var UserSchema = new Schema({
 					description: {
 						type: String,
 						require: false
-					}}],
+					},
+					url: {
+						type: String,
+						require: false
+					}
+				}],
 	createdat: {
 		type: Date,
 		default: Date.now
