@@ -23,7 +23,7 @@
     "grunt-express": "^1.4.1",
     "grunt-express-server": "^0.4.19",
     "moment": "^2.9.0",
-    "mongoose": "^3.8.22",
+    "mongoose": "3.8",
     "morgan": "~1.5.1",
     "multer": "^0.1.7",
     "ng-file-upload": "^3.0.2",

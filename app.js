@@ -27,6 +27,9 @@ mongoose.connection.on("error", console.error.bind(console,'connection error:'))
 mongoose.connection.on("open", function(ref){
     console.log("Connection database success");
 });
+mongoose.connection.on("close", function(ref){
+    console.log("Connection database closed");
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -138,11 +138,20 @@ app.controller('registerController', ['$scope','$http', '$upload', '$timeout', f
 
 	/* Configure datepicker */
 	$scope.finishRegistration = function(){
-		console.log($scope.bio);
-		console.log($scope.colleges);
-		console.log($scope.skills);
-		console.log($scope.experiences);
-		console.log($scope.portfolios);
+		$http.post('/register/save_register', 
+			{ bio: $scope.bio,
+			colleges: $scope.colleges,
+			skills : $scope.skills,
+			experiences: $scope.experiences,
+			portfolios: $scope.portfolios }
+		)
+		.success(function(data,status,header,config){
+			console.log(data);
+			console.log(status);
+		})
+		.error(function(data,status,header,config){
+			console.log(status);
+		});
 	}
 
 }]);
