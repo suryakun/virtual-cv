@@ -27,10 +27,11 @@ router.post('/save_register', function(request,respond){
 		isactive : true
 	});
 
-	user.save(function(error){
-		if (error) console.log(error);
-		respond.end('true');
-	});
+	console.log(user);
+	// user.save(function(error){
+	// 	if (error) respond.end(error);
+	// 	respond.end('true');
+	// });
 });
 
 module.exports = router;

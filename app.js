@@ -17,9 +17,9 @@ var home = require('./routes/home');
 var register = require('./routes/register');
 var test = require('./routes/test');
 var upload = require('./routes/upload');
+var api = require('./routes/api');
 
 var app = express();
-
 
 //load database
 mongoose.connect(database.host);
@@ -49,6 +49,7 @@ app.use('/home', home);
 app.use('/users', users);
 app.use('/upload', upload);
 app.use('/test', test);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

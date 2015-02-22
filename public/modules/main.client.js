@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp',['ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload']);
+var app = angular.module('myApp',['ngMessages','ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload','unique']);
 
 app.config(['$routeProvider','$locationProvider','$httpProvider',function($routeProvider,$locationProvider,$httpProvider) {
 	$routeProvider
@@ -84,6 +84,7 @@ app.controller('registerController', ['$scope','$http', '$upload', '$timeout', f
 								start_date:undefined,
 								end_date:undefined,
 								job_desc:undefined});
+		$scope.counterDate = $scope.counterDate + 1 ;
 	}
 	$scope.removeExperience = function(){
 		$scope.experiences.splice($scope.experiences.length -1,1);
@@ -129,11 +130,13 @@ app.controller('registerController', ['$scope','$http', '$upload', '$timeout', f
 	}
 
 	/* Configure datepicker */
+    $scope.counterDate = 1;
 	$scope.datePickerState = {};
 	$scope.open = function($event,OpenedState){
 		$event.preventDefault();
 	    $event.stopPropagation();
 	    $scope.datePickerState[OpenedState] = !$scope.datePickerState[OpenedState];
+	    console.log(OpenedState);
 	}
 
 	/* Configure datepicker */

@@ -93,13 +93,23 @@
     <script src="javascripts/ui-bootstrap-custom-0.12.0.js"></script>
     <script src="javascripts/angular-route.js"></script>
     <script src="javascripts/angular-touch.js"></script>
+    <script src="javascripts/angular-messages.js"></script>
     <script src="javascripts/angular-file-upload.js"></script>
+    <script src="services/validator.unique.js"></script>
     <script src="modules/home.client.js"></script>
     <script src="modules/main.client.js"></script>
 
 
     <!-- Bootstrap Core JavaScript -->
     <!-- <script src="javascripts/vcv.min.js"></script> -->
+
+    <!-- Alert Message -->
+    <script type="text/ng-template" id="common-error-message">
+        <span ng-message="required">This field is required</span>
+        <span ng-message="minlength">This field is too short</span>
+        <span ng-message="maxlength">This field is too long</span>
+    </script>
+    
 
 </body>
 
