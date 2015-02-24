@@ -1,16 +1,8 @@
 var express = require('express'),
 	User = require('../models/usermodel'),
 	bcrypt = require('bcrypt'),
-	nodemailer = require('nodemailer'),
+	mailer = require('../middlewares/mailer-middleware'),	
 	router = express.Router();
-
-var transporter = nodemailer.createTransport({
-	service: 'Gmail',
-	auth ; {
-		user: 'surya.ramshere@gmail.com',
-		pass: 'sakuragi291106'
-	}
-});
 
 router.get('/',function(request,respond){
 	respond.render('index');
@@ -25,7 +17,7 @@ router.post('/save_register', function(request,respond){
 		fullname: post.bio.fullname,
 		email : post.bio.email,
 		gender : post.bio.gender,
-		username : post.bio.username,
+		username : post.bio.email,
 		password : pwd,
 		token_password : post.bio.email + '_' + timeNow.toLocaleDateString(),
 		token_reset : post.bio.username + '_' + timeNow.toLocaleDateString(),
@@ -38,21 +30,10 @@ router.post('/save_register', function(request,respond){
 		isactive : true
 	});
 
-	var mailOptions = {
-	    from: 'Fred Foo <foo@blurdybloop.com>', // sender address
-	    to: post.bio.email, // list of receivers
-	    subject: 'Hello', // Subject line
-	    text: 'Hello world', // plaintext body
-	    html: '<b>Hello world</b>' // html body
-	};
-
-	transporter.sendMail(mailOptions, function(error, info){
-	    if(error){
-	        console.log(error);
-	    }else{
-	        console.log('Message sent: ' + info.response);
-	    }
-	});
+	mailer('registration', {to: post.bio.email, subject: 'Registration Confirmation', username: post.bio.username, password: pwd }, function(err, message){
+		if (err) console.log(err);
+		console.log(message);
+	});	
 
 });
 

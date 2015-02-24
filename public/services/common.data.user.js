@@ -5,10 +5,7 @@
 */
 angular.module('tempolarydata', []).service('storage', ['$window', function($window){
 	this.biodata = {};
-	this.biodata.educations = {};
-	this.biodata.skills = {};
-	this.biodata.experiences = {};
-
+	
 	this.insertBiodata = function(bio){
 		this.biodata = bio;
 	}
@@ -28,4 +25,4 @@ angular.module('tempolarydata', []).service('storage', ['$window', function($win
 	this.getData = function(){
 		return this.biodata;
 	}
-}])
+}]);
