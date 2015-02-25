@@ -3,7 +3,7 @@
 *
 * Description
 */
-angular.module('tempolarydata', []).service('storage', ['$window', function($window){
+angular.module('temporarydata', []).service('storage', ['$window', function($window){
 	this.biodata = {};
 	
 	this.insertBiodata = function(bio){
@@ -19,7 +19,11 @@ angular.module('tempolarydata', []).service('storage', ['$window', function($win
 	}
 
 	this.insertExperience = function(ex){
-		this.biodata.experiences = {};		
+		this.biodata.experiences = ex;		
+	}
+
+	this.insertPortfolio = function(port){
+		this.biodata.porfolios = port;	
 	}
 
 	this.getData = function(){

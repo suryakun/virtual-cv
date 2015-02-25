@@ -1,12 +1,20 @@
 'use strict';
 
-var app = angular.module('myApp',['ngMessages','ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload','unique']);
+var app = angular.module('myApp',['ngMessages','ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload','unique','temporarydata']);
 
-app.config(['$routeProvider','$locationProvider','$httpProvider',function($routeProvider,$locationProvider,$httpProvider) {
+app.config(['$routeProvider','$locationProvider','$httpProvider', function($routeProvider,$locationProvider,$httpProvider) {
 	$routeProvider
 		.when('/register',{
 			controller: 'registerController',
 			templateUrl: '/partials/register.html'
+		})
+		.when('/select-template', {
+			controller: 'selectTemplateController',
+			templateUrl: '/partials/select-template.html'
+		})
+		.when('/template-editable/:template', {
+			controller: 'editableTemplateController',
+			templateUrl: '/templates/digitalcv/index.html'
 		})
 		.otherwise({
 			redirectTo: '/register'
@@ -15,7 +23,7 @@ app.config(['$routeProvider','$locationProvider','$httpProvider',function($route
 	$locationProvider.html5Mode(true);
 }]);
 
-app.controller('registerController', ['$scope','$http', '$upload', '$timeout', function($scope,$http,$upload,$timeout){	
+app.controller('registerController', ['$scope', '$http', '$upload', '$timeout', '$location', 'storage', function($scope,$http,$upload,$timeout,$location,storage){	
 
 	/* Tab Navigation */
 	$scope.tab = {
@@ -27,7 +35,6 @@ app.controller('registerController', ['$scope','$http', '$upload', '$timeout', f
 		$scope.tab.personal = true;		
 		$scope.tab.education = false;
 		$scope.tab.experience = true;
-		// console.log($scope.bio);
 	}
 	$scope.nextToPersonal = function(){
 		$scope.tab.personal = false;
@@ -38,8 +45,6 @@ app.controller('registerController', ['$scope','$http', '$upload', '$timeout', f
 		$scope.tab.personal = true;
 		$scope.tab.education = true;		
 		$scope.tab.experience = false;
-		// console.log($scope.colleges);
-		// console.log($scope.skills);
 	}
 
 	/* Biodata user model */
@@ -140,7 +145,7 @@ app.controller('registerController', ['$scope','$http', '$upload', '$timeout', f
 	}
 
 	/* Configure datepicker */
-	$scope.finishRegistration = function(){
+	$scope.finishRegistration = function(){		
 		$http.post('/register/save_register', 
 			{ bio: $scope.bio,
 			colleges: $scope.colleges,
@@ -149,12 +154,32 @@ app.controller('registerController', ['$scope','$http', '$upload', '$timeout', f
 			portfolios: $scope.portfolios }
 		)
 		.success(function(data,status,header,config){
-			console.log(data);
-			console.log(status);
+			storage.insertBiodata($scope.bio);			
+			storage.insertEducations($scope.colleges);
+			storage.insertSkills($scope.skills);
+			storage.insertExperience($scope.experiences);
+			storage.insertPortfolio($scope.portfolios);
+			console.log(storage.biodata);
+			$location.path("select-template");
 		})
 		.error(function(data,status,header,config){
 			console.log(status);
-		});
+		});		
 	}
+
+}]);
+
+app.controller('selectTemplateController', ['$scope', function($scope){
+	
+}]);
+
+app.controller('editableTemplateController', ['$scope', '$q', 'storage', '$timeout', function($scope,$q,storage,$timeout){
+	var tmpdata = storage.getData();
+	for (var i = 0; i < tmpdata.experiences.length; i++) {
+		var sdate = new Date(tmpdata.experiences[i].end_date);
+		tmpdata.experiences[i].end_date = sdate.getFullYear();
+	};
+
+	$scope.datauser = tmpdata;
 
 }]);

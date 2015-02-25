@@ -1,6 +1,15 @@
-var mailer = require('../config/mailer'),
+var credential = require('../config/mailer'),
+	nodemailer = require('nodemailer'),
 	path = require('path'),
 	emailTemplate = require('email-templates');
+
+var transporter = nodemailer.createTransport({
+	service : 'Gmail',
+	auth : {
+		user : credential.username,
+		pass : credential.password
+	}
+});
 
 var templateDir = path.resolve(__dirname, '..', 'public/mailer');
 
@@ -13,9 +22,7 @@ var executeMailer = function(templateName, params, fn){
 			    subject: params.subject, // Subject line
 			    html: html // html body
 			};
-
-			console.log(text);
-			mailer.sendMail(mailOptions, function(error, info){
+			transporter.sendMail(mailOptions, function(error, info){
 			    if(error) return fn(error, info);			        
 		        return fn(null, info);
 			});

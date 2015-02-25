@@ -1,0 +1,267 @@
+/*CSS RESETTER*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	font-family: 'Open Sans';
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.clear {
+	clear: both;
+}
+/*END CSS RESETTER*/
+
+.container {
+	width: 700px;
+	margin: 0 auto;
+	position: relative;
+	padding: 30px;
+	border: solid 1px #d3d3d3;
+}
+
+.name {
+	margin-top: 40px;
+}
+
+.name h1 {
+	font-size: 40px;
+	font-weight: bold;
+	color: #3c99d4;
+	text-align: right;
+	float: left;
+}
+
+.name h1 > span {
+	color: #5e605f;
+	font-weight: normal;
+}
+
+.name > span {
+	font-size: 14px;
+	color: #ccc;
+	text-align: right;
+	float: left;
+}
+
+.image-wrap {
+	width: 90px;
+	height: 90px;
+	border: solid 1px #d3d3d3;
+	margin-right: 10px;
+	float: left;
+	overflow: hidden;
+}
+
+.profile h2 {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.prof-desc {
+	float: left;
+}
+
+.prof-desc p {
+	color: #333;
+	font-size: 12px;
+	margin-bottom: 7px;
+}
+
+.prof-desc p span {
+	color: #3c99d4;
+}
+
+.main-content {
+	margin-top: 40px;
+}
+
+.main-content .title {
+	border-bottom: solid 1px #d3d3d3;
+	padding-bottom: 7px;
+}
+
+.main-content .title h2 {
+	text-transform: uppercase;
+	font-size: 14px;
+	border-bottom: solid 4px #3c99d4;
+	padding-bottom: 7px;
+	display: inline-block;
+	position: relative;
+	bottom: -7px;
+}
+
+.exp-row {
+	margin-top: 20px;
+	display: inline-block;
+}
+
+.exp-row span.year {
+	width: 65px;
+	height: 65px;
+	line-height: 65px;
+	text-align: center;
+	float: left;
+	margin-right: 10px;
+	background: #aeaeae;
+	color: #fff;
+	font-size: 14px;
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+}
+
+.exp-row span.year.current {
+	background: #3c99d4;
+}
+
+.exp-desc {
+	float: left;
+	width: 80%;
+}
+
+.exp-desc h2 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #3c99d4;
+	margin-bottom: 7px;
+}
+
+.exp-desc h2 span {
+	/*font-weight: normal;*/
+	font-size: 12px;
+	color: #282828;
+}
+
+.exp-desc p {
+	font-size: 12px;
+	color: #333;
+	line-height: 16px;
+}
+
+.additional {
+	height: 350px;
+	max-height: 350px;
+	border-left: solid 1px #d3d3d3;
+	padding-left: 15px;
+	margin-top: 40px;
+}
+
+.additional h2 {
+	text-transform: uppercase;
+	background: #3c99d4;
+	font-size: 14px;
+	padding: 3px 15px;
+	position: relative;
+	left: -16px;
+	color: #fff;
+}
+
+.element {
+	margin-top: 20px;
+	display: inline-block;
+}
+
+.element p {
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+.element span.value {
+
+}
+
+.element span.value i {
+	width: 10px;
+	height: 10px;
+	float: left;
+	background: #e4e4e4;
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	margin-right: 4px;
+}
+
+.element span.value i.fill {
+	background: #3c99d4;
+}
+
+.element h3 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #3c99d4;
+	margin-bottom: 4px;
+}
+
+.element h4 {
+	font-size: 12px;
+	color: #333;
+	line-height: 16px;
+}
+
+.tag {
+	position: absolute;
+	left: 0;
+	top: 20px;
+}
+
+.tag span.block {
+	width: 50px;
+	height: 30px;
+	float: left;
+	margin-right: 10px;
+	background: #3c99d4;
+	border-right: solid 3px #444;
+}
+
+.tag span {
+	font-size: 16px;
+	color: #3c99d4;
+	line-height: 30px;
+}
+
+.bottom-block {
+	background: #e4e4e4;
+	width: 100%;
+	height: 30px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}

@@ -11,13 +11,14 @@ var database = require('./config/database');
 
 
 //export all controller
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var home = require('./routes/home');
-var register = require('./routes/register');
-var test = require('./routes/test');
-var upload = require('./routes/upload');
-var api = require('./routes/api');
+var routes = require('./routes/index'),
+    users = require('./routes/users'),
+    home = require('./routes/home'),
+    register = require('./routes/register'),
+    test = require('./routes/test'),
+    upload = require('./routes/upload'),
+    api = require('./routes/api'),
+    templating = require('./routes/templating');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/users', users);
 app.use('/upload', upload);
 app.use('/test', test);
 app.use('/api', api);
+app.use('/templating', templating);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

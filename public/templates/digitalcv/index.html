@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/cv.css" rel="stylesheet">
+
+   
+  </head>
+  <body>
+    <div class="container">
+      <div class="tag">
+        <span class="block"></span>
+        <span>RESUME</span>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="name">
+            <h1>{{ datauser.fullname }}</h1>
+            <span>Front End Designer</span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="profile">
+            <h2>PROFILE</h2>
+            <div class="image-wrap">
+              <img src="" alt="">
+            </div>
+            <div class="prof-desc">
+              <p>
+                <span>website</span><br/>
+                www.design3edge.com
+              </p>
+              <p>
+                <span>email</span><br/>
+                {{ datauser.email }}
+              </p>
+              <p>
+                <span>phone</span><br/>
+                +62 899 7665 8888
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9" ng-if="datauser.experiences">
+          <div class="main-content">
+            <div class="title">
+              <h2>professional experience</h2>
+            </div>
+            <div class="clear"></div>
+            <div ng-repeat="experience in datauser.experiences">
+              <div class="exp-row">
+                <span class="year current">{{ experience.end_date }}</span>
+                <div class="exp-desc">
+                  <h2>
+                    Frontend Developer<br/>
+                    <span>{{ experience.company_name }}</span>
+                  </h2>
+                  <p>
+                    {{ experience.job_desc }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="additional">
+            <h2>skills</h2>
+            <div class="element">
+              <p>HTML</p>
+              <span class="value">
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i></i>
+              </span>
+            </div>
+            <div class="element">
+              <p>Photoshop</p>
+              <span class="value">
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class=""></i>
+                <i class=""></i>
+                <i class=""></i>
+                <i></i>
+              </span>
+            </div>
+            <div class="element">
+              <p>CSS</p>
+              <span class="value">
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i></i>
+              </span>
+            </div>
+            <div class="element">
+              <p>Javascript</p>
+              <span class="value">
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i></i>
+              </span>
+            </div>
+            <div class="element">
+              <p>PHP</p>
+              <span class="value">
+                <i class="fill"></i>
+                <i class="fill"></i>
+                <i class=""></i>
+                <i class=""></i>
+                <i class=""></i>
+                <i></i>
+              </span>
+            </div>
+          </div>
+          <div class="additional">
+            <h2>awwards</h2>
+            <div class="element">
+              <h3>Best Designer</h3>
+              <h4>Design3edge.com<br/>2013</h4>
+            </div>
+            <div class="element">
+              <h3>Best Designer</h3>
+              <h4>Design3edge.com<br/>2013</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-block"></div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

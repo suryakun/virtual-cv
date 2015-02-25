@@ -33,6 +33,7 @@ router.post('/save_register', function(request,respond){
 	mailer('registration', {to: post.bio.email, subject: 'Registration Confirmation', username: post.bio.username, password: pwd }, function(err, message){
 		if (err) console.log(err);
 		console.log(message);
+		respond.end('ok');
 	});	
 
 });
