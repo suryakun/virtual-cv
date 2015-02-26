@@ -17,7 +17,7 @@ app.config(['$routeProvider','$locationProvider','$httpProvider', function($rout
 			templateUrl: '/templates/digitalcv/index.html'
 		})
 		.otherwise({
-			redirectTo: '/register'
+			redirectTo: '/'
 		});
 
 	$locationProvider.html5Mode(true);
@@ -154,17 +154,20 @@ app.controller('registerController', ['$scope', '$http', '$upload', '$timeout', 
 			portfolios: $scope.portfolios }
 		)
 		.success(function(data,status,header,config){
+			console.log(status);
+		})
+		.error(function(data,status,header,config){
+			console.log(status);
+		});		
+		
+		$timeout(function(){
 			storage.insertBiodata($scope.bio);			
 			storage.insertEducations($scope.colleges);
 			storage.insertSkills($scope.skills);
 			storage.insertExperience($scope.experiences);
 			storage.insertPortfolio($scope.portfolios);
-			console.log(storage.biodata);
 			$location.path("select-template");
-		})
-		.error(function(data,status,header,config){
-			console.log(status);
-		});		
+		},200);
 	}
 
 }]);

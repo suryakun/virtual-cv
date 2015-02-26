@@ -30,11 +30,14 @@ router.post('/save_register', function(request,respond){
 		isactive : true
 	});
 
-	mailer('registration', {to: post.bio.email, subject: 'Registration Confirmation', username: post.bio.username, password: pwd }, function(err, message){
+	user.save(function(err, log){
 		if (err) console.log(err);
-		console.log(message);
-		respond.end('ok');
-	});	
+		mailer('registration', {to: post.bio.email, subject: 'Registration Confirmation', username: post.bio.username, password: pwd }, function(err, message){
+			if (err) console.log(err);
+			console.log('sent');
+			respond.end('ok');
+		});	
+	});
 
 });
 
