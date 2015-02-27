@@ -44,9 +44,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/', home);
 app.use('/register', register);
-app.use('/home', home);
 app.use('/users', users);
 app.use('/upload', upload);
 app.use('/test', test);

@@ -20,7 +20,27 @@ app.config(['$routeProvider','$locationProvider','$httpProvider', function($rout
 			redirectTo: '/'
 		});
 
-	$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode(false).hashPrefix('!');
+}]);
+
+app.controller('headerController', ['$scope', '$location', function($scope,$location){
+	var path = $location.path().split('/');
+	console.log(path);
+	if (path[1] == '') {
+		$scope.template = '/partials/header-home.html';
+	}else{
+		$scope.template = '/partials/header.html';
+	}
+}]);
+
+app.controller('footerController', ['$scope', '$location', function($scope,$location){
+	var path = $location.path().split('/');
+	console.log(path);
+	if (path[0] == '') {
+		$scope.templatefooter = '/partials/footer.html';
+	}else{
+		$scope.templatefooter = '/partials/footer.html';
+	}
 }]);
 
 app.controller('registerController', ['$scope', '$http', '$upload', '$timeout', '$location', 'storage', function($scope,$http,$upload,$timeout,$location,storage){	
