@@ -3,30 +3,19 @@
 *
 * Description
 */
-angular.module('temporarydata', []).service('storage', ['$window', function($window){
-	this.biodata = {};
+angular.module('temporarydata', [])
+.factory('storageData', ['$cookieStore', function($cookieStore){	
+
+	return {		
+		set: function(key,value){
+			$cookieStore.put(key,value);
+		},
+		get: function(key){
+			return $cookieStore.get(key);
+		},
+		delete : function(key){
+			$cookieStore.remove(key);
+		}
+	}
 	
-	this.insertBiodata = function(bio){
-		this.biodata = bio;
-	}
-
-	this.insertEducations = function(edu){
-		this.biodata.educations = edu;
-	}
-
-	this.insertSkills = function(skil){
-		this.biodata.skills = skil;
-	}
-
-	this.insertExperience = function(ex){
-		this.biodata.experiences = ex;		
-	}
-
-	this.insertPortfolio = function(port){
-		this.biodata.porfolios = port;	
-	}
-
-	this.getData = function(){
-		return this.biodata;
-	}
-}]);
+}])

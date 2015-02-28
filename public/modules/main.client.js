@@ -23,27 +23,21 @@ app.config(['$routeProvider','$locationProvider','$httpProvider', function($rout
 	$locationProvider.html5Mode(false).hashPrefix('!');
 }]);
 
-app.controller('headerController', ['$scope', '$location', function($scope,$location){
-	var path = $location.path().split('/');
-	console.log(path);
-	if (path[1] == '') {
-		$scope.template = '/partials/header-home.html';
-	}else{
-		$scope.template = '/partials/header.html';
-	}
+app.controller('headerController', ['$scope', '$location', '$rootScope', function($scope,$location,$rootScope){
+	$scope.$on('$locationChangeStart', function(event,next,current){
+		var path = $location.path();
+		$scope.template = (path == '/')? '/partials/header-home.html' : '/partials/header.html';
+	});
 }]);
 
 app.controller('footerController', ['$scope', '$location', function($scope,$location){
-	var path = $location.path().split('/');
-	console.log(path);
-	if (path[0] == '') {
+	$scope.$on('$locationChangeStart', function(event,next,current){
+		var path = $location.path();
 		$scope.templatefooter = '/partials/footer.html';
-	}else{
-		$scope.templatefooter = '/partials/footer.html';
-	}
+	});
 }]);
 
-app.controller('registerController', ['$scope', '$http', '$upload', '$timeout', '$location', 'storage', function($scope,$http,$upload,$timeout,$location,storage){	
+app.controller('registerController', ['$scope', '$http', '$upload', '$timeout', '$location', 'storageData', function($scope,$http,$upload,$timeout,$location,storageData){	
 
 	/* Tab Navigation */
 	$scope.tab = {
@@ -181,11 +175,13 @@ app.controller('registerController', ['$scope', '$http', '$upload', '$timeout', 
 		});		
 		
 		$timeout(function(){
-			storage.insertBiodata($scope.bio);			
-			storage.insertEducations($scope.colleges);
-			storage.insertSkills($scope.skills);
-			storage.insertExperience($scope.experiences);
-			storage.insertPortfolio($scope.portfolios);
+			var user = {};
+			user.biodata = $scope.bio;
+			user.biodata.educations = $scope.colleges;
+			user.biodata.skills = $scope.skills;
+			user.biodata.experiences = $scope.experiences;
+			user.biodata.portfolios = $scope.portfolios;			
+			storageData.set('userdata', user);
 			$location.path("select-template");
 		},200);
 	}
@@ -196,13 +192,13 @@ app.controller('selectTemplateController', ['$scope', function($scope){
 	
 }]);
 
-app.controller('editableTemplateController', ['$scope', '$q', 'storage', '$timeout', function($scope,$q,storage,$timeout){
-	var tmpdata = storage.getData();
-	for (var i = 0; i < tmpdata.experiences.length; i++) {
-		var sdate = new Date(tmpdata.experiences[i].end_date);
-		tmpdata.experiences[i].end_date = sdate.getFullYear();
+app.controller('editableTemplateController', ['$scope', '$q', 'storageData', '$timeout', function($scope,$q,storageData,$timeout){
+	var tmpdata = storageData.get('userdata');
+	if (tmpdata.biodata.experiences.length) {
+		for (var i = 0; i < tmpdata.biodata.experiences.length; i++) {
+			var sdate = new Date(tmpdata.biodata.experiences[i].end_date);
+			tmpdata.biodata.experiences[i].end_date = sdate.getFullYear();
+		};		
 	};
-
-	$scope.datauser = tmpdata;
-
+	$scope.datauser = tmpdata.biodata;
 }]);
