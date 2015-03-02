@@ -4,6 +4,10 @@ var app = angular.module('myApp',['ngCookies','ngMessages','ngRoute','ngTouch','
 
 app.config(['$routeProvider','$locationProvider','$httpProvider', function($routeProvider,$locationProvider,$httpProvider) {
 	$routeProvider
+		.when('/',{
+			controller: 'homeController',
+			templateUrl: '/partials/home.html'
+		})
 		.when('/register',{
 			controller: 'registerController',
 			templateUrl: '/partials/register.html'
