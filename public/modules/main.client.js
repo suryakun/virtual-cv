@@ -1,6 +1,10 @@
 'use strict';
 
-var app = angular.module('myApp',['ngCookies','ngMessages','ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload','unique','temporarydata']);
+var app = angular.module('myApp',['ngCookies','ngMessages','ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload','unique','temporarydata','angularLoad','xeditable']);
+
+app.run(function(editableOptions){
+	editableOptions.theme = 'bs3'
+});
 
 app.config(['$routeProvider','$locationProvider','$httpProvider', function($routeProvider,$locationProvider,$httpProvider) {
 	$routeProvider
@@ -193,16 +197,22 @@ app.controller('registerController', ['$scope', '$http', '$upload', '$timeout', 
 }]);
 
 app.controller('selectTemplateController', ['$scope', function($scope){
-	
+		
 }]);
 
-app.controller('editableTemplateController', ['$scope', '$q', 'storageData', '$timeout', function($scope,$q,storageData,$timeout){
-	var tmpdata = storageData.get('userdata');
-	if (tmpdata.biodata.experiences.length) {
-		for (var i = 0; i < tmpdata.biodata.experiences.length; i++) {
-			var sdate = new Date(tmpdata.biodata.experiences[i].end_date);
-			tmpdata.biodata.experiences[i].end_date = sdate.getFullYear();
-		};		
-	};
-	$scope.datauser = tmpdata.biodata;
+app.controller('editableTemplateController', ['$scope', '$q', 'storageData', '$timeout', 'angularLoad', function($scope,$q,storageData,$timeout, loader){
+	loader.loadCSS('templates/digitalcv/css/cv.css')
+	.then(function(){
+		var tmpdata = storageData.get('userdata');
+		if (tmpdata.biodata.experiences.length) {
+			for (var i = 0; i < tmpdata.biodata.experiences.length; i++) {
+				var sdate = new Date(tmpdata.biodata.experiences[i].end_date);
+				tmpdata.biodata.experiences[i].end_date = sdate.getFullYear();
+			};		
+		};
+		$scope.datauser = tmpdata.biodata;
+	}).catch(function(error){
+		console.log(error);
+	
+	});
 }]);

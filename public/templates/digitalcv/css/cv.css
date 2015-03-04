@@ -64,8 +64,10 @@ table {
 	font-size: 40px;
 	font-weight: bold;
 	color: #3c99d4;
-	text-align: right;
+	text-align: left;
+	margin-bottom: 10px;
 	float: left;
+	width: 100%;
 }
 
 .name h1 > span {
@@ -131,6 +133,7 @@ table {
 .exp-row {
 	margin-top: 20px;
 	display: inline-block;
+	width: 100%;
 }
 
 .exp-row span.year {

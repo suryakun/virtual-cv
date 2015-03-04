@@ -13,6 +13,7 @@
     <title>Create CV</title>
 
     <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet">
     <!-- <link href="templates/digitalcv/css/cv.css" rel="stylesheet"> -->
 
     <style>
@@ -25,18 +26,19 @@
 
 <body ng-app="myApp">
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="headerController">
+    <nav class="" role="navigation" ng-controller="headerController">
         <div class="container" ng-include="template"></div>
     </nav>
+    <div class="clear"></div>
 
     <!-- Page Content -->
     <div class="container">
-        <div class="row clearfix" ng-view></div>
+        <div class="row clearfix view-wrap" ng-view></div>
     </div>
     <!-- /.container -->
-
+    <div class="clear"></div>
     <footer ng-controller="footerController">
-        <div class="container" ng-include="templatefooter"></div>
+        <div class="" ng-include="templatefooter"></div>
     </footer>
 
     <!-- jQuery Version 1.11.1 -->
@@ -51,6 +53,7 @@
     <script src="javascripts/angular-file-upload.js"></script>
     <script src="javascripts/angular-load.js"></script>
     <script src="javascripts/angular-cookie.js"></script>
+    <script src="javascripts/xeditable.js"></script>
     <script src="services/validator.unique.js"></script>
     <script src="services/common.data.user.js"></script>
     <script src="modules/main.client.js"></script>
