@@ -6,7 +6,7 @@
         <div class="col-md-6">
           <div class="name">
             <h1 editable-text="datauser.fullname">{{ datauser.fullname || "empty" }}</h1>
-            <span editable-text="datauser.">Front End Designer</span>
+            <span editable-text="datauser.pro">Front End Designer</span>
           </div>
         </div>
         <div class="col-md-6">
@@ -26,7 +26,7 @@
               </p>
               <p>
                 <span>phone</span><br/>
-                <span editable-text="{{datauser.phone}}">{{ datauser.phone || "empty" }}</span>
+                <span editable-text="datauser.phone">{{ datauser.phone || "empty" }}</span>
               </p>
             </div>
           </div>
@@ -42,13 +42,13 @@
             <div class="clear"></div>
             <div ng-repeat="experience in datauser.experiences">
               <div class="exp-row">
-                <span class="year current" editable-text="{{experience.end_date}}">{{ experience.end_date || "empty" }}</span>
+                <span class="year current" editable-text="experience.end_date">{{ experience.end_date || "empty" }}</span>
                 <div class="exp-desc">
                   <h2>
-                    <div editable-text="{{experience.end_date}}">Frontend Developer</div><br/>
-                    <span editable-text="{{ experience.company_name }}">{{ experience.company_name || "empty"}}</span>
+                    <div editable-text="experience.end_date">Frontend Developer</div><br/>
+                    <span editable-text="experience.company_name">{{ experience.company_name || "empty"}}</span>
                   </h2>
-                  <p editable-text="{{ experience.job_desc }}">
+                  <p editable-text="experience.job_desc">
                     {{ experience.job_desc || "empty" }}
                   </p>
                 </div>
@@ -61,7 +61,7 @@
             <h2>skills</h2>
             <div ng-repeat="skill in datauser.skills">
               <div class="element">
-                <p editable-text="{{skill.name}}">{{skill.name}}</p>
+                <p editable-text="skill.name">{{skill.name}}</p>
                 <span class="value">
                   <i class="fill"></i>
                   <i class="fill"></i>
@@ -77,8 +77,8 @@
             <h2>Portfolios</h2>
             <div ng-repeat="portfolio in datauser.portfolios">
               <div class="element">
-                <h3 editable-text="{{portfolio.title}}">{{portfolio.title || "empty" }}</h3>
-                <h4 editable-text="{{portfolio.url}}">{{portfolio.url || "empty" }}<br/><span editable-text="{{portfolio.description}}">{{portfolio.description || "empty"}} </span></h4>
+                <h3 editable-text="portfolio.title">{{portfolio.title || "empty" }}</h3>
+                <h4 editable-text="portfolio.url">{{portfolio.url || "empty" }}<br/><span editable-text="portfolio.description">{{portfolio.description || "empty"}} </span></h4>
               </div>
             </div>
           </div>
