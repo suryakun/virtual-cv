@@ -40,6 +40,10 @@ var UserSchema = new Schema({
 		type: String,
 		require: true
 	},
+	pro: {
+		type: String,
+		require: false	
+	},
 	educations: [{
 		name: {
 			type: String,
@@ -61,6 +65,10 @@ var UserSchema = new Schema({
 		}
 	}],
 	experiences: [{ company_name: {
+						type: String,
+						require: false
+					},
+					position: {
 						type: String,
 						require: false
 					},
