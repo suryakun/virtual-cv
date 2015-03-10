@@ -1,76 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
+    <title>Sublime - stunning free HTML5/CSS3 website template</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <base href="/">
-
-    <title>Create CV</title>
-
-    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheets/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <!-- <link href="templates/digitalcv/css/cv.css" rel="stylesheet"> -->
-
-    <style>
-    body {
-        padding-top: 70px;
-    }
-    </style>
-
+    <meta name="author" content="pixelhint.com">
+    <meta name="description" content="Sublime Stunning free HTML5/CSS3 website template"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/sublime/reset.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/sublime/fancybox-thumbs.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/sublime/fancybox-buttons.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/sublime/fancybox.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/sublime/animate.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/sublime/main.css">    
 </head>
-
 <body ng-app="myApp">
-    <!-- Navigation -->
-    <nav class="" role="navigation" ng-controller="headerController">
-        <div class="container" ng-include="template"></div>
-    </nav>
-    <div class="clear"></div>
 
-    <!-- Page Content -->
-    <div class="container">
-        <div class="row clearfix view-wrap" ng-view></div>
-    </div>
-    <!-- /.container -->
-    <div class="clear"></div>
-    <footer ng-controller="footerController">
-        <div class="" ng-include="templatefooter"></div>
-    </footer>
+    <section class="billboard light">
+        <header class="wrapper light">
+            <a href="#"><img class="logo" src="images/sublime/logo_light.png" alt=""/></a>
+            <nav>
+                <ul>
+                    <li><a href="">About Us</a></li>
+                    <li><a href="">Products</a></li>
+                    <li><a href="">Journal</a></li>
+                    <li><a href="">Contact Us</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <!-- jQuery Version 1.11.1 -->
-    <script src="javascripts/angular.js"></script>
-    <script src="javascripts/jquery.js"></script>
-    <script src="javascripts/bootstrap.js"></script>
-    <script src="javascripts/ui-bootstrap-custom-tpls-0.12.0.js"></script>
-    <script src="javascripts/ui-bootstrap-custom-0.12.0.js"></script>
-    <script src="javascripts/angular-route.js"></script>
-    <script src="javascripts/angular-touch.js"></script>
-    <script src="javascripts/angular-messages.js"></script>
-    <script src="javascripts/angular-file-upload.js"></script>
-    <script src="javascripts/angular-load.js"></script>
-    <script src="javascripts/angular-cookie.js"></script>
-    <script src="javascripts/xeditable.js"></script>
-    <script src="services/validator.unique.js"></script>
-    <script src="services/common.data.user.js"></script>
-    <script src="modules/main.client.js"></script>
+        <div class="caption light animated wow fadeInDown clearfix">
+            <h1>Sunt In Culpa Officia Deserunt</h1>
+            <p>dolore magna aliqua enim ad minim veniam occaecat</p>
+            <hr>
+        </div>
+        <div class="shadow"></div>
+    </section><!--  End billboard  -->
 
 
-    <!-- Bootstrap Core JavaScript -->
-    <!-- <script src="javascripts/vcv.min.js"></script> -->
+    <section class="services wrapper">
+        <ul class="clearfix">
+            <li class="animated wow fadeInDown">
+                <img class="icon" src="images/sublime/icon1.png" alt=""/>
+                <span class="separator"></span>
+                <h2>Officia Deserunt Mollit</h2>
+                <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua voluptate velit esse
+                cillum dolore.</p>
+            </li>
+            <li class="animated wow fadeInDown"  data-wow-delay=".2s">
+                <img class="icon" src="images/sublime/icon2.png" alt=""/>
+                <span class="separator"></span>
+                <h2>Culpa Killum Dolore</h2>
+                <p>aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </li>
+            <li class="animated wow fadeInDown"  data-wow-delay=".4s">
+                <img class="icon" src="images/sublime/icon3.png" alt=""/>
+                <span class="separator"></span>
+                <h2>Elit Tempor Incididunt</h2>
+                <p>nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat enim ad minim veniam.</p>
+            </li>
+        </ul>
+    </section><!--  End services  -->
 
-    <!-- Alert Message -->
-    <script type="text/ng-template" id="common-error-message">
-        <span ng-message="required">This field is required</span>
-        <span ng-message="minlength">This field is too short</span>
-        <span ng-message="maxlength">This field is too long</span>
-    </script>
+
+    <section class="video">
+        <img src="images/sublime/video_logo.png" alt="" class="video_logo animated wow fadeInDown"/>
+        <h3 class="animated wow fadeInDown">who we are & what we do</h3>
+        <a href="http://www.youtube.com/embed/cBJyo0tgLnw" id="play_btn" class="fancybox animated wow flipInX" data-wow-duration="2s"></a>
+    </section><!--  End video  -->
+
+
+    <section class="testimonials wrapper">
+        <div class="title animated wow fadeIn">
+            <h2>Testimonials</h2>
+            <h3>what clients are saying about us</h3>
+            <hr class="separator"/>
+        </div>
+
+        <ul class="clearfix">
+            <li class="animated wow fadeInDown">
+                <p><img src="images/sublime/quotes.png" alt="" class="quotes"/>Dolor sit amet consectetur isicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud laboris.
+                <span class="triangle"></span>
+                </p>
+                <div class="client">
+                    <img src="images/sublime/client1.jpg" class="avatar"/>
+                    <div class="client_details">
+                        <h4>John Doe</h4>
+                        <h5>CEO</h5>
+                    </div>
+                </div>
+            </li>
+            <li class="animated wow fadeInDown"  data-wow-delay=".2s">
+                <p><img src="images/sublime/quotes.png" alt="" class="quotes"/>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam sunt in culpa officia deserunt mollit anim laborum sint occaecat.
+                <span class="triangle"></span>
+                </p>
+                <div class="client">
+                    <img src="images/sublime/client2.jpg" class="avatar"/>
+                    <div class="client_details">
+                        <h4>Alex Martin</h4>
+                        <h5>UI Designer</h5>
+                    </div>
+                </div>
+            </li>
+            <li class="animated wow fadeInDown"  data-wow-delay=".4s">
+                <p><img src="images/sublime/quotes.png" alt="" class="quotes"/>Aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse slum dolore eu fugiat nulla pariatursint occaecat.
+                <span class="triangle"></span>
+                </p>
+                <div class="client">
+                    <img src="images/sublime/client3.jpg" class="avatar"/>
+                    <div class="client_details">
+                        <h4>Linda Doe</h4>
+                        <h5>Developer</h5>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section><!--  End testimonials  -->
+
+
+    <section class="blog_posts">
+        <div class="wrapper">
+            <div class="title animated wow fadeIn">
+                <h2>Recent Posts</h2>
+                <h3>the most recent posts from our blog</h3>
+                <hr class="separator"/>
+            </div>
+
+            <ul class="clearfix">
+                <li class="animated wow fadeInDown">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">25</span>
+                            <span class="month">Jun</span>
+                        </div>
+                        <a href="#">
+                            <img src="images/sublime/blog_post1.jpg" alt=""/>
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>Sed do eiusmod tempor incididunt.</h1>
+                    </a>
+                </li>
+
+                <li class="animated wow fadeInDown" data-wow-delay=".2s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">11</span>
+                            <span class="month">May</span>
+                        </div>
+                        <a href="#">
+                            <img src="images/sublime/blog_post2.jpg" alt=""/>
+                        </a>
+                    </div>                  
+                    <a href="#">
+                        <h1>Velit esse cillum dollore fugiat nulla.</h1>
+                    </a>
+                </li>
+
+                <li class="animated wow fadeInDown" data-wow-delay=".4s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">13</span>
+                            <span class="month">Feb</span>
+                        </div>
+                        <a href="#">
+                            <img src="images/sublime/blog_post3.jpg" alt=""/>
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>Officia deserunt mollit est anim laborum.</h1>
+                    </a>
+                </li>
+
+                <li class="animated wow fadeInDown" data-wow-delay=".6s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">10</span>
+                            <span class="month">Jan</span>
+                        </div>
+                        <a href="#">
+                            <img src="images/sublime/blog_post4.jpg" alt=""/>
+                        </a>
+                    </div>
+                    <a href="#"><h1>Culpa qui officia deserunt 
+                    mollit ani
+                    m.</h1>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </section><!--  End blog_posts  -->
+
+
+    <footer>
+        <div class="wrapper">
+            <div class="rights">
+                <img src="images/sublime/footer_logo.png" alt="" class="footer_logo"/>
+                <p>© Sublime. All Rights Reserved 2014 - More Free Templates at <a href="http://pixelhint.com" target="_blank">Pixelhint.com</a></p>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>      
+    </footer><!--  End footer  -->
+
+    <!--  Load sublime js  -->    
+    <script type="text/javascript" src="javascripts/sublime/jquery.js"></script>
+    <script type="text/javascript" src="javascripts/sublime/fancybox.js"></script>
+    <script type="text/javascript" src="javascripts/sublime/fancybox-buttons.js"></script>
+    <script type="text/javascript" src="javascripts/sublime/fancybox-media.js"></script>
+    <script type="text/javascript" src="javascripts/sublime/fancybox-thumbs.js"></script>
+    <script type="text/javascript" src="javascripts/sublime/wow.js"></script>
+    <script type="text/javascript" src="javascripts/sublime/main.js"></script>
     
-
+    <!--  Load core js  -->
+    <script type="text/javascript" src="javascripts/core/angular.min.js"></script>
+    <script type="text/javascript" src="javascripts/core/angular-animate.min.js"></script>
+    <script type="text/javascript" src="javascripts/core/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="javascripts/core/angular-file-upload.js"></script>
+    <script type="text/javascript" src="javascripts/core/angular-file-upload-shim.js"></script>
+    <script type="text/javascript" src="javascripts/core/angular-messages.min.js"></script>
+    <script type="text/javascript" src="javascripts/core/angular-route.min.js"></script>
+    <script type="text/javascript" src="javascripts/core/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="javascripts/core/angular-touch.min.js"></script>
+    <script type="text/javascript" src="javascripts/core/ui-bootstrap-custom-0.12.0.js"></script>
+    <script type="text/javascript" src="javascripts/core/ui-bootstrap-custom-tpls-0.12.0.js"></script>
+    <script type="text/javascript" src="javascripts/core/xeditable.js"></script>
+    <script type="text/javascript" src="modules/main.client.js"></script>
 </body>
-
 </html>
