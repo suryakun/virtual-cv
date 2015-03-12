@@ -12,6 +12,7 @@ var database = require('./config/database');
 
 //export all controller
 var routes = require('./routes/index'),
+    dashboard = require('./routes/dashboard'),
     users = require('./routes/users'),
     home = require('./routes/home'),
     register = require('./routes/register'),
@@ -45,6 +46,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', home);
+app.use('/dashboard', dashboard)
 app.use('/register', register);
 app.use('/users', users);
 app.use('/upload', upload);
