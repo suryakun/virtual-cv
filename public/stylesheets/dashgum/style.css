@@ -184,7 +184,7 @@ hr {
 }
 
 .mt {
-	margin-top: 25px;
+	margin-top: 1px;
 }
 
 .mb {
@@ -413,7 +413,8 @@ ul.sidebar-menu li a.active i {
 }
 
 .black-bg {
-    background: #ffd777;
+    /*background: #ffd777;*/
+    background: #ff865c;    
     border-bottom: 1px solid #c9aa5f;
 }
 

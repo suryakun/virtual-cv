@@ -7,6 +7,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
+    <base href="/" />
     <title>DASHGUM - FREE Bootstrap Admin Template</title>
 
     <!-- dashgum -->
@@ -195,7 +196,7 @@
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
       <aside ng-controller="sideController">
-          <div id="sidebar"  class="nav-collapse ">
+          <div id="sidebar"  class="nav-collapse">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
@@ -287,17 +288,17 @@
           <section class="wrapper">
 
               <div class="row">
-                  <div class="col-lg-9 main-chart">                                   
-                      
+                <div class="col-lg-9 main-chart">                                                         
                 <div class="row mt" ng-view>
                 </div><!-- /col-lg-9 END SECTION MIDDLE -->                  
+              </div>
                   
       <!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->                  
                   
-                  <div class="col-lg-3 ds" ng-controller="">
-                    <!--COMPLETED ACTIONS DONUTS CHART-->
+            <div class="col-lg-3 ds" ng-controller="notifController">
+            <!--COMPLETED ACTIONS DONUTS CHART-->
 						<h3>NOTIFICATIONS</h3>
                                         
                       <!-- First Action -->
@@ -446,6 +447,13 @@
       <!--footer end-->
   </section>
 
+  <!-- Alert Message -->
+    <script type="text/ng-template" id="common-error-message">
+        <span ng-message="required" class="help-block">This field is required</span>
+        <span ng-message="minlength" class="help-block">This field is too short</span>
+        <span ng-message="maxlength" class="help-block">This field is too long</span>
+    </script>
+
     <!--  Load dashgum js  -->
     <script type="text/javascript" src="javascripts/dashgum/jquery.js"></script>
     <script type="text/javascript" src="javascripts/dashgum/jquery-1.8.3.min.js"></script>
@@ -461,7 +469,7 @@
     <script type="text/javascript" src="javascripts/dashgum/chart-master/Chart.js"></script>
 
     <!--  Load core js  -->
-    <script type="text/javascript" src="javascripts/core/angular.min.js"></script>
+    <script type="text/javascript" src="javascripts/core/angular.js"></script>
     <script type="text/javascript" src="javascripts/core/angular-animate.min.js"></script>
     <script type="text/javascript" src="javascripts/core/angular-cookies.min.js"></script>
     <script type="text/javascript" src="javascripts/core/angular-file-upload.js"></script>
@@ -473,7 +481,9 @@
     <script type="text/javascript" src="javascripts/core/ui-bootstrap-custom-0.12.0.js"></script>
     <script type="text/javascript" src="javascripts/core/ui-bootstrap-custom-tpls-0.12.0.js"></script>
     <script type="text/javascript" src="javascripts/core/xeditable.js"></script>
-    <script type="text/javascript" src="modules/main.client.js"></script>
+    <script type="text/javascript" src="services/common.data.user.js"></script>
+    <script type="text/javascript" src="services/validator.unique.js"></script>
+    <script type="text/javascript" src="modules/dashboard.client.js"></script>
 
 
 	<script type="text/javascript">
