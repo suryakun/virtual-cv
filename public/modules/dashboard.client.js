@@ -8,7 +8,7 @@ dashboard.config(['$routeProvider','$locationProvider','$httpProvider',function(
 	$routeProvider
 		.when('/',{
 			controller : 'dashboardMainController',
-			templateUrl : '/partials/dasboard-home.html'
+			templateUrl : '/partials/dashboard-home.html'
 		})	
 		.when('/register', {
 			controller: 'registerController',
@@ -29,16 +29,40 @@ dashboard.controller('headerController', ['$rootScope', function($rootScope){
 	
 }]);
 
-dashboard.controller('sideController', ['$scope','$rootScope', function($scope, $rootScope){
-	$scope.showRightPanel = $rootScope.showRightPanel;
+dashboard.directive('menuPanel', ['$location', '$rootScope', function($location, $rootScope){
+	// Runs during compile
+	return {
+		// name: '',
+		// priority: 1,
+		// terminal: true,
+		// scope: {}, // {} = isolate, true = child, false/undefined = no change
+		// controller: function($scope, $element, $attrs, $transclude) {},
+		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+		restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+		// template: '',
+		// templateUrl: '',
+		// replace: true,
+		// transclude: true,
+		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+		link: function($scope, iElm, iAttrs, controller) {
+			$scope.$on($locationChangeStart, function(event,next,current){
+				iElm[0].style = showRightPanel ? "{'margin-left' : '210px'}" : "{'margin-left' : '0px'}"
+				console.log(showRightPanel);				
+			});
+		}
+	};
+}]);
+
+dashboard.controller('sideController', ['$scope','$rootScope','$location','$timeout', function($scope, $rootScope, $location, $timeout){
+
 }]);
 
 dashboard.controller('notifController', ['$rootScope', function($rootScope){
 	
 }]);
 
-dashboard.controller('dashboardMainController', ['$scope', function($scope){
-	
+dashboard.controller('dashboardMainController', ['$scope', '$rootScope', function($scope, $rootScope){
+	$rootScope.showRightPanel = true;
 }]);
 
 dashboard.controller('registerController', ['$rootScope','$scope', '$http', '$upload', '$timeout', '$location', 'storageData', function($rootScope,$scope,$http,$upload,$timeout,$location,storageData){	

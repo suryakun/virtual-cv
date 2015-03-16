@@ -195,7 +195,7 @@
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
-      <aside ng-controller="sideController">
+      <aside ng-controller="sideController" ng-show="showRightPanel">
           <div id="sidebar"  class="nav-collapse">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
@@ -284,7 +284,7 @@
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      <section id="main-content">
+      <section id="main-content" menu-panel>
           <section class="wrapper">
 
               <div class="row">
