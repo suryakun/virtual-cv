@@ -29,32 +29,15 @@ dashboard.controller('headerController', ['$rootScope', function($rootScope){
 	
 }]);
 
-dashboard.directive('menuPanel', ['$location', '$rootScope', function($location, $rootScope){
-	// Runs during compile
-	return {
-		// name: '',
-		// priority: 1,
-		// terminal: true,
-		// scope: {}, // {} = isolate, true = child, false/undefined = no change
-		// controller: function($scope, $element, $attrs, $transclude) {},
-		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
-		restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
-		// template: '',
-		// templateUrl: '',
-		// replace: true,
-		// transclude: true,
-		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-		link: function($scope, iElm, iAttrs, controller) {
-			$scope.$on($locationChangeStart, function(event,next,current){
-				iElm[0].style = showRightPanel ? "{'margin-left' : '210px'}" : "{'margin-left' : '0px'}"
-				console.log(showRightPanel);				
-			});
-		}
-	};
-}]);
-
 dashboard.controller('sideController', ['$scope','$rootScope','$location','$timeout', function($scope, $rootScope, $location, $timeout){
-
+	$rootScope.$on('changeMenuState', function(event,state){
+		if (state == 1 ) {
+			angular.element("#main-content").css('margin-left','210px');
+		}else{
+			angular.element("#main-content").css('margin-left','0px');
+		};
+		$scope.showRightPanel = state;
+	});
 }]);
 
 dashboard.controller('notifController', ['$rootScope', function($rootScope){
@@ -62,12 +45,12 @@ dashboard.controller('notifController', ['$rootScope', function($rootScope){
 }]);
 
 dashboard.controller('dashboardMainController', ['$scope', '$rootScope', function($scope, $rootScope){
-	$rootScope.showRightPanel = true;
+	$rootScope.$emit('changeMenuState', 1);
 }]);
 
 dashboard.controller('registerController', ['$rootScope','$scope', '$http', '$upload', '$timeout', '$location', 'storageData', function($rootScope,$scope,$http,$upload,$timeout,$location,storageData){	
 
-	$rootScope.showRightPanel = false;
+	$rootScope.$emit('changeMenuState', 0);	
 
 	/* Tab Navigation */
 	$scope.tab = {
