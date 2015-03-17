@@ -18,6 +18,10 @@ dashboard.config(['$routeProvider','$locationProvider','$httpProvider',function(
 			controller : 'selectTemplateController',
 			templateUrl: '/partials/select-template.html'
 		})
+		.when('/edit-template',{
+			controller : 'editTemplateController',
+			templateUrl : '/templates/digitalcv/index.html'
+		})
 		.otherwise({
 			redirectTo: '/register'
 		});
@@ -40,8 +44,16 @@ dashboard.controller('sideController', ['$scope','$rootScope','$location','$time
 	});
 }]);
 
-dashboard.controller('notifController', ['$rootScope', function($rootScope){
-	
+dashboard.controller('notifController', ['$scope','$rootScope', function($scope, $rootScope){
+	$rootScope.$on('changeNotifState', function(event,state){
+		if (state == 1 ) {
+			angular.element("#main-cart").removeClass("col-lg-12").addClass("col-lg-9");
+		}else{
+			angular.element("#main-cart").removeClass("col-lg-9").addClass("col-lg-12");
+		};
+		$scope.showNotifPanel = state;
+		console.log(state);
+	});
 }]);
 
 dashboard.controller('dashboardMainController', ['$scope', '$rootScope', function($scope, $rootScope){
@@ -51,6 +63,7 @@ dashboard.controller('dashboardMainController', ['$scope', '$rootScope', functio
 dashboard.controller('registerController', ['$rootScope','$scope', '$http', '$upload', '$timeout', '$location', 'storageData', function($rootScope,$scope,$http,$upload,$timeout,$location,storageData){	
 
 	$rootScope.$emit('changeMenuState', 0);	
+	$rootScope.$emit('changeNotifState', 1);	
 
 	/* Tab Navigation */
 	$scope.tab = {
@@ -194,4 +207,17 @@ dashboard.controller('registerController', ['$rootScope','$scope', '$http', '$up
 		},200);
 	}
 
+}]);
+
+dashboard.controller('selectTemplateController', ['$location', '$scope', '$rootScope', function($location, $scope, $rootScope){
+	$rootScope.$emit('changeMenuState', 0);	
+	$rootScope.$emit('changeNotifState', 1);	
+
+	$scope.setTemplate = function(){
+		$location.path("edit-template");
+	};
+}]);
+
+dashboard.controller('editTemplateController', ['$rootScope', 'storageData', function($rootScope, storageData){
+	
 }]);

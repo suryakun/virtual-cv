@@ -288,7 +288,7 @@
           <section class="wrapper">
 
               <div class="row">
-                <div class="col-lg-9 main-chart">                                                         
+                <div class="col-lg-9 main-chart" id="main-cart">                                                         
                 <div class="row mt" ng-view>
                 </div><!-- /col-lg-9 END SECTION MIDDLE -->                  
               </div>
@@ -297,7 +297,7 @@
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->                  
                   
-            <div class="col-lg-3 ds" ng-controller="notifController">
+            <div class="col-lg-3 ds" ng-controller="notifController" ng-show="showNotifPanel">
             <!--COMPLETED ACTIONS DONUTS CHART-->
 						<h3>NOTIFICATIONS</h3>
                                         
