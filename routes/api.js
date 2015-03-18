@@ -1,5 +1,7 @@
 var express = require('express'),
 	router = express.Router(),
+	fs = require('fs'),
+	wkhtmltopdf = require('wkhtmltopdf'),
 	User = require('../models/usermodel');
 
 router.get('/checkingemail/:email', function(request, response){
@@ -12,6 +14,11 @@ router.get('/checkingemail/:email', function(request, response){
 			response.send(false);
 		}
 	});
+});
+
+router.get('/generate-pdf',function(request,response){
+	wkhtmltopdf('http://127.0.0.1:3000/dashboard/#!/', { pageSize: 'letter' })
+  	.pipe(response);  	
 });
 
 module.exports = router;

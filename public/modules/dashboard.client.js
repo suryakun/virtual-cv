@@ -20,7 +20,7 @@ dashboard.config(['$routeProvider','$locationProvider','$httpProvider',function(
 		})
 		.when('/edit-template',{
 			controller : 'editTemplateController',
-			templateUrl : '/templates/digitalcv/index.html'
+			templateUrl : '/templates/testing/index.html'
 		})
 		.otherwise({
 			redirectTo: '/register'
@@ -219,5 +219,6 @@ dashboard.controller('selectTemplateController', ['$location', '$scope', '$rootS
 }]);
 
 dashboard.controller('editTemplateController', ['$rootScope', 'storageData', function($rootScope, storageData){
-	
+	$rootScope.$emit('changeMenuState', 0);	
+	$rootScope.$emit('changeNotifState', 0);
 }]);
