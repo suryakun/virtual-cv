@@ -17,7 +17,7 @@ angular.module('temporarydata', [])
 			}
 		},
 		get: function(key){
-			return typeof(Storage) !== "undefined" ? localStorage.getItem(key) : $cookieStore.get(key);			
+			return typeof(Storage) !== "undefined" ? JSON.parse(localStorage.getItem(key)) : $cookieStore.get(key);			
 		},
 		delete : function(key){
 			if (typeof(Storage) !== "undefined") {

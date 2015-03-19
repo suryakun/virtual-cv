@@ -162,7 +162,6 @@ dashboard.controller('registerController', ['$rootScope','$scope', '$http', '$up
 					console.log('Progress '+ progressPercentage + '% ' + evt.config.file.name );
 				})
 				.success(function(data,status,header,config){
-					console.log(data);
 					$scope.bio.avatar = data;
 				});
 			};
@@ -176,7 +175,6 @@ dashboard.controller('registerController', ['$rootScope','$scope', '$http', '$up
 		$event.preventDefault();
 	    $event.stopPropagation();
 	    $scope.datePickerState[OpenedState] = !$scope.datePickerState[OpenedState];
-	    console.log(OpenedState);
 	}
 
 	/* Configure datepicker */
@@ -218,7 +216,9 @@ dashboard.controller('selectTemplateController', ['$location', '$scope', '$rootS
 	};
 }]);
 
-dashboard.controller('editTemplateController', ['$rootScope', 'storageData', function($rootScope, storageData){
+dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageData', function($scope, $rootScope, storageData){
 	$rootScope.$emit('changeMenuState', 0);	
 	$rootScope.$emit('changeNotifState', 0);
+	$scope.data = storageData.get('userdata').biodata;
+	console.log($scope.data);
 }]);
