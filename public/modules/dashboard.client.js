@@ -1,4 +1,4 @@
-var dashboard = angular.module('dashboard', ['ngCookies','ngMessages','ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload','unique','temporarydata','xeditable']);
+var dashboard = angular.module('dashboard', ['ngCookies','ngMessages','ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload','unique','temporarydata','xeditable','contentedit']);
 
 dashboard.run(function(editableOptions){
 	editableOptions.theme = 'bs3';	
@@ -20,7 +20,7 @@ dashboard.config(['$routeProvider','$locationProvider','$httpProvider',function(
 		})
 		.when('/edit-template',{
 			controller : 'editTemplateController',
-			templateUrl : '/templates/testing/index.html'
+			templateUrl : '/templates/testing/default.html'
 		})
 		.otherwise({
 			redirectTo: '/register'
@@ -52,7 +52,6 @@ dashboard.controller('notifController', ['$scope','$rootScope', function($scope,
 			angular.element("#main-cart").removeClass("col-lg-9").addClass("col-lg-12");
 		};
 		$scope.showNotifPanel = state;
-		console.log(state);
 	});
 }]);
 
@@ -220,5 +219,4 @@ dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageD
 	$rootScope.$emit('changeMenuState', 0);	
 	$rootScope.$emit('changeNotifState', 0);
 	$scope.data = storageData.get('userdata').biodata;
-	console.log($scope.data);
 }]);

@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp',['ngCookies','ngMessages','ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload','unique','temporarydata','angularLoad','xeditable']);
+var app = angular.module('myApp',['ngCookies','ngMessages','ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload','unique','temporarydata','angularLoad','xeditable','contentedit']);
 
 app.run(function(editableOptions){
 	editableOptions.theme = 'bs3'

@@ -1,25 +1,22 @@
-<div id="page-wrap">
+<div id="page-wrap" class="form-panel">
     
-    <img src="images/cthulu.png" alt="Photo of Cthulu" id="pic" />
+    <img src="templates/testing/images/cthulu.png" alt="Photo of Cthulu" id="pic" />
 
     <div id="contact-info" class="vcard">
     
         <!-- Microformats! -->
     
-        <h1 class="fn">C'thulhu</h1>
+        <h1 class="fn" editing ng-model="data.fullname">{{data.fullname || 'Nothing'}}</h1>
     
         <p>
-            Cell: <span class="tel">555-666-7777</span><br />
-            Email: <a class="email" href="mailto:greatoldone@lovecraft.com">greatoldone@lovecraft.com</a>
+            Cell: <span class="tel" editing ng-model="data.phone">{{data.phone || 'Nothing'}}</span><br />
+            Email: <a class="email" href="" editing ng-model="data.email">{{data.email || 'Nothing'}}</a>
         </p>
     </div>
             
     <div id="objective">
-        <p>
-            I am an outgoing and energetic (ask anybody) young professional, seeking a 
-            career that fits my professional skills, personality, and murderous tendencies. 
-            My squid-like head is a masterful problem solver and inspires fear in who gaze upon it. 
-            I can bring world domination to your organization. 
+        <p editing ng-model="data.objective">
+            {{ data.objective || 'Please insert your objective here' }}
         </p>
     </div>
     
@@ -27,24 +24,28 @@
     
     <dl>
         <dd class="clear"></dd>
-        
-        <dt>Education</dt>
-        <dd>
-            <h2>Withering Madness University - Planet Vhoorl</h2>
-            <p><strong>Major:</strong> Public Relations<br />
-               <strong>Minor:</strong> Scale Tending</p>
-        </dd>
+        <div>
+            <dt>Education</dt>
+            <dd>
+                <div ng-repeat="education in data.educations">
+                    <h2 editing ng-model="education.name">{{ education.name || 'Nothing' }}</h2>
+                    <p><strong>Degree:</strong><span editing ng-model="education.degree">{{ education.degree || 'Nothing' }}</span><br />
+                       <strong>Minor:</strong> Scale Tending</p>
+                </div>
+            </dd>
+        </div>
         
         <dd class="clear"></dd>
-        
-        <dt>Skills</dt>
-        <dd>
-            <h2>Office skills</h2>
-            <p>Office and records management, database administration, event organization, customer support, travel coordination</p>
-            
-            <h2>Computer skills</h2>
-            <p>Microsoft productivity software (Word, Excel, etc), Adobe Creative Suite, Windows</p>
-        </dd>
+        <div>
+            <dt>Skills</dt>
+            <dd>
+                <h2>Office skills</h2>
+                <p>Office and records management, database administration, event organization, customer support, travel coordination</p>
+                
+                <h2>Computer skills</h2>
+                <p>Microsoft productivity software (Word, Excel, etc), Adobe Creative Suite, Windows</p>
+            </dd>
+        </div>
         
         <dd class="clear"></dd>
         

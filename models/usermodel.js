@@ -8,6 +8,10 @@ var UserSchema = new Schema({
 		type: String,
 		require: true
 	},
+	objective : {
+		type: String,
+		require: false
+	},
 	email: {
 		type: String,
 		require: true
