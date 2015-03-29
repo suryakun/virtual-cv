@@ -106,6 +106,36 @@ var UserSchema = new Schema({
 						require: false
 					}
 				}],
+	prestation: [{
+					title: {
+						type: String,
+						require: false
+					},
+					description: {
+						type: String,
+						require: false
+					}
+				}],
+	socialactifity : [{
+					title: {
+						type: String,
+						require: false
+					},
+					description: {
+						type: String,
+						require: false
+					}
+				}],
+	certification: [{
+					title: {
+						type: String,
+						require: false
+					},
+					description: {
+						type: String,
+						require: false
+					}
+				}],
 	createdat: {
 		type: Date,
 		default: Date.now

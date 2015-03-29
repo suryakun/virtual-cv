@@ -1,4 +1,16 @@
-var dashboard = angular.module('dashboard', ['ngCookies','ngMessages','ngRoute','ngTouch','ui.bootstrap.tabs','ui.bootstrap.datepicker','ui.bootstrap.tpls','angularFileUpload','unique','temporarydata','xeditable','contentedit']);
+var dashboard = angular.module('dashboard', ['ngCookies',
+											'ngMessages',
+											'ngRoute',
+											'ngTouch',
+											'ui.bootstrap.tabs',
+											'ui.bootstrap.datepicker',
+											'ui.bootstrap.tooltip',
+											'ui.bootstrap.tpls',
+											'angularFileUpload',
+											'unique',
+											'temporarydata',
+											'xeditable',
+											'contentedit']);
 
 dashboard.run(function(editableOptions){
 	editableOptions.theme = 'bs3';	
@@ -62,29 +74,7 @@ dashboard.controller('dashboardMainController', ['$scope', '$rootScope', functio
 dashboard.controller('registerController', ['$rootScope','$scope', '$http', '$upload', '$timeout', '$location', 'storageData', function($rootScope,$scope,$http,$upload,$timeout,$location,storageData){	
 
 	$rootScope.$emit('changeMenuState', 0);	
-	$rootScope.$emit('changeNotifState', 1);	
-
-	/* Tab Navigation */
-	$scope.tab = {
-		personal : false,
-		education: true,
-		experience: true
-	}
-	$scope.nextToEducation = function(){
-		$scope.tab.personal = true;		
-		$scope.tab.education = false;
-		$scope.tab.experience = true;
-	}
-	$scope.nextToPersonal = function(){
-		$scope.tab.personal = false;
-		$scope.tab.education = true;		
-		$scope.tab.experience = true;
-	}
-	$scope.nextToExperience = function(){
-		$scope.tab.personal = true;
-		$scope.tab.education = true;		
-		$scope.tab.experience = false;
-	}
+	$rootScope.$emit('changeNotifState', 1);		
 
 	/* Biodata user model */
 	$scope.bio = {
@@ -219,4 +209,5 @@ dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageD
 	$rootScope.$emit('changeMenuState', 0);	
 	$rootScope.$emit('changeNotifState', 0);
 	$scope.data = storageData.get('userdata').biodata;
+	console.log($scope.data);
 }]);

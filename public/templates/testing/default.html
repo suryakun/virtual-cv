@@ -1,6 +1,6 @@
 <div id="page-wrap" class="form-panel">
     
-    <img src="templates/testing/images/cthulu.png" alt="Photo of Cthulu" id="pic" />
+    <img ng-src="{{data.avatar}}" width="10%" height="14%" alt="Photo of Cthulu" id="pic" />
 
     <div id="contact-info" class="vcard">
     
@@ -30,7 +30,7 @@
                 <div ng-repeat="education in data.educations">
                     <h2 editing ng-model="education.name">{{ education.name || 'Nothing' }}</h2>
                     <p><strong>Degree:</strong><span editing ng-model="education.degree">{{ education.degree || 'Nothing' }}</span><br />
-                       <strong>Minor:</strong> Scale Tending</p>
+                       <strong>Major:</strong><span editing ng-model="education.major">{{ education.major || 'Nothing' }}</span></p>
                 </div>
             </dd>
         </div>
@@ -39,43 +39,34 @@
         <div>
             <dt>Skills</dt>
             <dd>
-                <h2>Office skills</h2>
-                <p>Office and records management, database administration, event organization, customer support, travel coordination</p>
-                
-                <h2>Computer skills</h2>
-                <p>Microsoft productivity software (Word, Excel, etc), Adobe Creative Suite, Windows</p>
+                <div ng-repeat="skill in data.skills">                
+                <p><strong editing ng-model="skill.name">{{ skill.name || 'Untittle' }}: </strong><span editing ng-model="skill.level">{{ skill.level || 'Undefined' }}</span></p>                       
+                </div>                           
             </dd>
         </div>
         
         <dd class="clear"></dd>
+        <div>
+            <dt>Experience</dt>
+            <dd>
+                <div ng-repeat="experience in data.experiences">
+                    <h2 editing ng-model="experience.company_name">{{ experience.company_name || 'Company name here' }}</h2>
+                    <p><strong>Position:</strong><span editing ng-model="experience.position">{{ experience.position || 'Position' }}</span><br />
+                       <strong>From:</strong><span editing ng-model="experience.start_date">{{ experience.start_date || 'Nothing' }}</span></p>
+                </div>
+            </dd>
+        </div>
         
-        <dt>Experience</dt>
-        <dd>
-            <h2>Doomsday Cult <span>Leader/Overlord - Baton Rogue, LA - 1926-2010</span></h2>
-            <ul>
-                <li>Inspired and won highest peasant death competition among servants</li>
-                <li>Helped coordinate managers to grow cult following</li>
-                <li>Provided untimely deaths to all who opposed</li>
-            </ul>
-            
-            <h2>The Watering Hole <span>Bartender/Server - Milwaukee, WI - 2009</span></h2>
-            <ul>
-                <li>Worked on grass-roots promotional campaigns</li>
-                <li>Reduced theft and property damage percentages</li>
-                <li>Janitorial work, Laundry</li>
-            </ul> 
-        </dd>
-        
-        <dd class="clear"></dd>
-        
-        <dt>Hobbies</dt>
-        <dd>World Domination, Deep Sea Diving, Murder Most Foul</dd>
-        
-        <dd class="clear"></dd>
-        
-        <dt>References</dt>
-        <dd>Available on request</dd>
-        
+        <dd class="clear"></dd>                        
+        <div>
+            <dt>Portfolios</dt>
+            <dd>
+                <div ng-repeat="portfolio in data.portfolios">
+                    <h2 editing ng-model="portfolio.title">{{ portfolio.title || 'Portfolio name' }}</h2>
+                    <p><span editing ng-model="portfolio.description">{{ portfolio.description || 'Description' }}</span></p>
+                </div>
+            </dd>
+        </div>
         <dd class="clear"></dd>
     </dl>
     
