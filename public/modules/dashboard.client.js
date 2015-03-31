@@ -74,7 +74,7 @@ dashboard.controller('dashboardMainController', ['$scope', '$rootScope', functio
 dashboard.controller('registerController', ['$rootScope','$scope', '$http', '$upload', '$timeout', '$location', 'storageData', function($rootScope,$scope,$http,$upload,$timeout,$location,storageData){	
 
 	$rootScope.$emit('changeMenuState', 0);	
-	$rootScope.$emit('changeNotifState', 1);		
+	$rootScope.$emit('changeNotifState', 1);	
 
 	/* Biodata user model */
 	$scope.bio = {
@@ -205,9 +205,20 @@ dashboard.controller('selectTemplateController', ['$location', '$scope', '$rootS
 	};
 }]);
 
-dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageData', function($scope, $rootScope, storageData){
+dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageData', '$http', function($scope, $rootScope, storageData, $http){
 	$rootScope.$emit('changeMenuState', 0);	
 	$rootScope.$emit('changeNotifState', 0);
 	$scope.data = storageData.get('userdata').biodata;
-	console.log($scope.data);
+	$scope.generatePdf = function(){
+		var editor = document.querySelector(".wrap-editor");
+		var jsonml = JsonML.fromHTML(editor);
+		console.log(jsonml);
+		$http.post('/templating/store', {template: jsonml})
+			.success(function(data){
+				console.log(data);
+			})
+			.error(function(err){
+				console.log(err);
+			});
+	}
 }]);
