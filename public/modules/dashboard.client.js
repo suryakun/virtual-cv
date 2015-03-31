@@ -64,28 +64,6 @@ dashboard.controller('registerController', ['$rootScope','$scope', '$http', '$up
 	$rootScope.$emit('changeMenuState', 0);	
 	$rootScope.$emit('changeNotifState', 1);	
 
-	/* Tab Navigation */
-	$scope.tab = {
-		personal : false,
-		education: true,
-		experience: true
-	}
-	$scope.nextToEducation = function(){
-		$scope.tab.personal = true;		
-		$scope.tab.education = false;
-		$scope.tab.experience = true;
-	}
-	$scope.nextToPersonal = function(){
-		$scope.tab.personal = false;
-		$scope.tab.education = true;		
-		$scope.tab.experience = true;
-	}
-	$scope.nextToExperience = function(){
-		$scope.tab.personal = true;
-		$scope.tab.education = true;		
-		$scope.tab.experience = false;
-	}
-
 	/* Biodata user model */
 	$scope.bio = {
 		fullname:undefined,
@@ -215,8 +193,21 @@ dashboard.controller('selectTemplateController', ['$location', '$scope', '$rootS
 	};
 }]);
 
-dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageData', function($scope, $rootScope, storageData){
+dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageData', '$http', function($scope, $rootScope, storageData, $http){
 	$rootScope.$emit('changeMenuState', 0);	
 	$rootScope.$emit('changeNotifState', 0);
 	$scope.data = storageData.get('userdata').biodata;
+
+	$scope.generatePdf = function(){
+		var editor = document.querySelector(".wrap-editor");
+		var jsonml = JsonML.fromHTML(editor);
+		console.log(jsonml);
+		$http.post('/templating/store', {template: jsonml})
+			.success(function(data){
+				console.log(data);
+			})
+			.error(function(err){
+				console.log(err);
+			});
+	}
 }]);
