@@ -24,48 +24,56 @@
     
     <dl>
         <dd class="clear"></dd>
-        <div>
-            <dt>Education</dt>
-            <dd>
-                <div ng-repeat="education in data.educations">
-                    <h2 editing ng-model="education.name">{{ education.name || 'Nothing' }}</h2>
-                    <p><strong>Degree:</strong><span editing ng-model="education.degree">{{ education.degree || 'Nothing' }}</span><br />
-                       <strong>Major:</strong><span editing ng-model="education.major">{{ education.major || 'Nothing' }}</span></p>
-                </div>
-            </dd>
+        <div droppable >
+            <div draggable="true"e>
+                <dt>Education</dt>
+                <dd>
+                    <div ng-repeat="education in data.educations">
+                        <h2 editing ng-model="education.name">{{ education.name || 'Nothing' }}</h2>
+                        <p><strong>Degree:</strong><span editing ng-model="education.degree">{{ education.degree || 'Nothing' }}</span><br />
+                           <strong>Major:</strong><span editing ng-model="education.major">{{ education.major || 'Nothing' }}</span></p>
+                    </div>
+                </dd>
+            </div>
         </div>
         
         <dd class="clear"></dd>
-        <div>
-            <dt>Skills</dt>
-            <dd>
-                <div ng-repeat="skill in data.skills">                
-                <p><strong editing ng-model="skill.name">{{ skill.name || 'Untittle' }}: </strong><span editing ng-model="skill.level">{{ skill.level || 'Undefined' }}</span></p>                       
-                </div>                           
-            </dd>
+        <div droppable>
+            <div draggable="true">
+                <dt>Skills</dt>
+                <dd>
+                    <div ng-repeat="skill in data.skills">                
+                    <p><strong editing ng-model="skill.name">{{ skill.name || 'Untittle' }}: </strong><span editing ng-model="skill.level">{{ skill.level || 'Undefined' }}</span></p>                       
+                    </div>                           
+                </dd>
+            </div>
         </div>
         
         <dd class="clear"></dd>
-        <div>
-            <dt>Experience</dt>
-            <dd>
-                <div ng-repeat="experience in data.experiences">
-                    <h2 editing ng-model="experience.company_name">{{ experience.company_name || 'Company name here' }}</h2>
-                    <p><strong>Position:</strong><span editing ng-model="experience.position">{{ experience.position || 'Position' }}</span><br />
-                       <strong>From:</strong><span editing ng-model="experience.start_date">{{ experience.start_date || 'Nothing' }}</span></p>
-                </div>
-            </dd>
+        <div droppable>
+            <div draggable="true">
+                <dt>Experience</dt>
+                <dd>
+                    <div ng-repeat="experience in data.experiences">
+                        <h2 editing ng-model="experience.company_name">{{ experience.company_name || 'Company name here' }}</h2>
+                        <p><strong>Position:</strong><span editing ng-model="experience.position">{{ experience.position || 'Position' }}</span><br />
+                           <strong>From:</strong><span editing ng-model="experience.start_date">{{ experience.start_date || 'Nothing' }}</span></p>
+                    </div>
+                </dd>
+            </div>
         </div>
         
         <dd class="clear"></dd>                        
-        <div>
-            <dt>Portfolios</dt>
-            <dd>
-                <div ng-repeat="portfolio in data.portfolios">
-                    <h2 editing ng-model="portfolio.title">{{ portfolio.title || 'Portfolio name' }}</h2>
-                    <p><span editing ng-model="portfolio.description">{{ portfolio.description || 'Description' }}</span></p>
-                </div>
-            </dd>
+        <div droppable>
+            <div draggable="true">
+                <dt>Portfolios</dt>
+                <dd>
+                    <div ng-repeat="portfolio in data.portfolios">
+                        <h2 editing ng-model="portfolio.title">{{ portfolio.title || 'Portfolio name' }}</h2>
+                        <p><span editing ng-model="portfolio.description">{{ portfolio.description || 'Description' }}</span></p>
+                    </div>
+                </dd>
+            </div>
         </div>
         <dd class="clear"></dd>
     </dl>

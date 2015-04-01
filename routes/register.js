@@ -27,7 +27,8 @@ router.post('/save_register', function(request,respond){
 		experiences: post.experiences,
 		skills : post.skills,
 		portfolios: post.portfolios,
-		isactive : true
+		isactive : true,
+		cv: null
 	});
 
 	user.save(function(err, log){

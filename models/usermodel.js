@@ -140,6 +140,10 @@ var UserSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	cv: {
+		type: Object,
+		require: false
+	},
 	isactive: {
 		type: Boolean
 	}

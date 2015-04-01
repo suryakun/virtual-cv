@@ -1,23 +1,32 @@
 var express = require('express'),
-	router = express.Router(),
-	parser = require('jsonml').parse;
-
-var Stringify = require("jsonml-stringify/stringify");
-var stringify = Stringify([
-    require("jsonml-stringify/plugins/loose")
-]);
+	User = require('../models/usermodel'),
+	url = require('url'),
+	router = express.Router();	
 
 router.get('/',function(req,res){
 	res.render('editable-template');
 });
 
 router.post('/store', function(req,res){
-	var result = parser(req.body.template);
-
-	var html = stringify(result);
-	console.log(result);
-	console.log(html);
+	var result = req.body.template;
+	console.log(result)
 	res.json({status: 'ok'});
+	User.findOne({email : req.body.email }, function(err, data){
+		if (err || !data) {
+			console.log('not found');
+		};
+		data = new User();
+		data.cv = result;
+		data.save(function(err){
+			if (err) console.log(err);
+			console.log("cv saved");
+			res.json({id : data.id});
+		});
+	});
+});
+
+router.post('/cv', function(req, res){
+	
 });
 
 module.exports = router;

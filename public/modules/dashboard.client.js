@@ -10,7 +10,8 @@ var dashboard = angular.module('dashboard', ['ngCookies',
 											'unique',
 											'temporarydata',
 											'xeditable',
-											'contentedit']);
+											'contentedit',
+											'dragDrop']);
 
 dashboard.run(function(editableOptions){
 	editableOptions.theme = 'bs3';	
@@ -205,7 +206,7 @@ dashboard.controller('selectTemplateController', ['$location', '$scope', '$rootS
 	};
 }]);
 
-dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageData', '$http', function($scope, $rootScope, storageData, $http){
+dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageData', '$http', '$location', function($scope, $rootScope, storageData, $http, $location){
 	$rootScope.$emit('changeMenuState', 0);	
 	$rootScope.$emit('changeNotifState', 0);
 	$scope.data = storageData.get('userdata').biodata;
@@ -213,7 +214,7 @@ dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageD
 		var editor = document.querySelector(".wrap-editor");
 		var jsonml = JsonML.fromHTML(editor);
 		console.log(jsonml);
-		$http.post('/templating/store', {template: jsonml})
+		$http.post('/templating/store', { email: $scope.data.email, template: jsonml})
 			.success(function(data){
 				console.log(data);
 			})
@@ -221,4 +222,6 @@ dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageD
 				console.log(err);
 			});
 	}
+	$scope.list2 = {};
+	
 }]);
