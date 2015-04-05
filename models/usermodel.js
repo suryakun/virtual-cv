@@ -149,16 +149,16 @@ var UserSchema = new Schema({
 	}
 });
 
-UserSchema.pre('save', function(next){
-	var user = this;
-	bcrypt.genSalt(10 , function(err, salt){
-		bcrypt.hash(user.password, salt, function(error, hash){
-			if (error) return next(error);
-			user.password = hash;
-			next()
-		});
-	});
-});
+// UserSchema.pre('save', function(next){
+// 	var user = this;
+// 	bcrypt.genSalt(10 , function(err, salt){
+// 		bcrypt.hash(user.password, salt, function(error, hash){
+// 			if (error) return next(error);
+// 			user.password = hash;
+// 			next()
+// 		});
+// 	});
+// });
 
 UserSchema.methods.comparePassword = function(password, next){
 	var user = this;

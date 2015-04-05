@@ -1,7 +1,7 @@
 var express = require('express'),
 	User = require('../models/usermodel'),
 	bcrypt = require('bcrypt'),
-	mailer = require('../middlewares/mailer-middleware'),	
+	mailer = require('../middlewares/mailer-middleware'),		
 	router = express.Router();
 
 router.get('/',function(request,respond){
@@ -31,13 +31,19 @@ router.post('/save_register', function(request,respond){
 		cv: null
 	});
 
-	user.save(function(err, log){
+	bcrypt.genSalt(10, function(err,salt){
 		if (err) console.log(err);
-		mailer('registration', {to: post.bio.email, subject: 'Registration Confirmation', username: post.bio.username, password: pwd }, function(err, message){
-			if (err) console.log(err);
-			console.log('sent');
-			respond.end('ok');
-		});	
+		bcrypt.hash(user.password, salt, function(error, hash){
+			user.password = hash;
+			user.save(function(err,log){
+				if (err) console.log(err);
+				mailer('registration', {to: post.bio.email, subject: 'Registration Confirmation', username: post.bio.username, password: pwd }, function(err, message){
+					if (err) console.log(err);
+					console.log('sent');
+					respond.end('ok');
+				});	
+			});
+		});
 	});
 
 });
