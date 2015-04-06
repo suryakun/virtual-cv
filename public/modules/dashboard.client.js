@@ -224,4 +224,8 @@ dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageD
 	}
 	$scope.list2 = {};
 	
+	Sortable({
+		els: '.column'
+	});
+
 }]);
