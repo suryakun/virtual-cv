@@ -10,7 +10,6 @@ router.get('/',function(req,res){
 router.post('/store', function(req,res){
 	var result = req.body.template;
 	console.log(result)
-	res.json({status: 'ok'});
 	User.findOne({email : req.body.email }, function(err, data){
 		if (err || !data) {
 			console.log('not found');
@@ -20,6 +19,7 @@ router.post('/store', function(req,res){
 		data.save(function(err){
 			if (err) console.log(err);
 			console.log("cv saved");
+			res.header(200);
 			res.json({id : data.id});
 		});
 	});

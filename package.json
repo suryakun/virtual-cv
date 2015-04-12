@@ -39,6 +39,7 @@
     "phantom": "^0.7.2",
     "promise": "^6.1.0",
     "promised-io": "^0.3.4",
+    "protractor": "^2.0.0",
     "serve-favicon": "~2.2.0",
     "virtual-dom": "^2.0.1",
     "wkhtmltopdf": "^0.1.5"

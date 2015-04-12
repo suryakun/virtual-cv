@@ -57,7 +57,7 @@ dashboard.controller('sideController', ['$scope','$rootScope','$location','$time
 	});
 }]);
 
-dashboard.controller('notifController', ['$scope','$rootScope', function($scope, $rootScope){
+dashboard.controller('notifController', ['$scope','$rootScope', 'storageData', function($scope, $rootScope, storageData){
 	$rootScope.$on('changeNotifState', function(event,state){
 		if (state == 1 ) {
 			angular.element("#main-cart").removeClass("col-lg-12").addClass("col-lg-9");
@@ -65,6 +65,19 @@ dashboard.controller('notifController', ['$scope','$rootScope', function($scope,
 			angular.element("#main-cart").removeClass("col-lg-9").addClass("col-lg-12");
 		};
 		$scope.showNotifPanel = state;
+		$scope.data = storageData.get('userdata').biodata;
+		$scope.generatePdf = function(){
+			var editor = document.querySelector(".wrap-editor");
+			var jsonml = JsonML.fromHTML(editor);
+			console.log(jsonml);
+			$http.post('/templating/store', { email: $scope.data.email, template: jsonml})
+				.success(function(data){
+					console.log(data);
+				})
+				.error(function(err){
+					console.log(err);
+				});
+		}
 	});
 }]);
 
@@ -206,22 +219,9 @@ dashboard.controller('selectTemplateController', ['$location', '$scope', '$rootS
 	};
 }]);
 
-dashboard.controller('editTemplateController', ['$scope','$rootScope', 'storageData', '$http', '$location', function($scope, $rootScope, storageData, $http, $location){
+dashboard.controller('editTemplateController', ['$scope', '$rootScope', function($scope, $rootScope){
 	$rootScope.$emit('changeMenuState', 0);	
-	$rootScope.$emit('changeNotifState', 0);
-	$scope.data = storageData.get('userdata').biodata;
-	$scope.generatePdf = function(){
-		var editor = document.querySelector(".wrap-editor");
-		var jsonml = JsonML.fromHTML(editor);
-		console.log(jsonml);
-		$http.post('/templating/store', { email: $scope.data.email, template: jsonml})
-			.success(function(data){
-				console.log(data);
-			})
-			.error(function(err){
-				console.log(err);
-			});
-	}
+	$rootScope.$emit('changeNotifState', 1);	
 	$scope.list2 = {};
 	
 	Sortable({
