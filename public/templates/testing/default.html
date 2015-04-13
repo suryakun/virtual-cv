@@ -69,6 +69,39 @@
                 </div>
             </dd>
         </div>
+
+        <dd class="clear"></dd>                        
+        <div class="column" ng-if="prestations.length > 0">
+            <dt>Prestations</dt>
+            <dd>
+                <div ng-repeat="prestation in data.prestations">
+                    <h2 editing ng-model="portfolio.title">{{ prestation.title || 'Prestation Title' }}</h2>
+                    <p><span editing ng-model="portfolio.description">{{ prestation.description || 'Description' }}</span></p>
+                </div>
+            </dd>
+        </div>
+
+        <dd class="clear"></dd>                        
+        <div class="column" ng-if="socials.length > 0">
+            <dt>Social Activities</dt>
+            <dd>
+                <div ng-repeat="social in data.socials">
+                    <h2 editing ng-model="portfolio.title">{{ social.title || 'Activity Name' }}</h2>
+                    <p><span editing ng-model="portfolio.description">{{ social.description || 'Description' }}</span></p>
+                </div>
+            </dd>
+        </div>
+
+        <dd class="clear"></dd>                        
+        <div class="column" ng-if="certifications.length > 0">
+            <dt>Certifications</dt>
+            <dd>
+                <div ng-repeat="certificate in data.certifications">
+                    <h2 editing ng-model="portfolio.title">{{ cartificate.title || 'Cartificate name' }}</h2>
+                    <p><span editing ng-model="portfolio.description">{{ cartificate.description || 'Description' }}</span></p>
+                </div>
+            </dd>
+        </div>
     </dl>
     
     <div class="clear"></div>

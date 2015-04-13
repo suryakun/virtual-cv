@@ -222,6 +222,18 @@ dashboard.controller('selectTemplateController', ['$location', '$scope', '$rootS
 dashboard.controller('editTemplateController', ['$scope', '$rootScope', function($scope, $rootScope){
 	$rootScope.$emit('changeMenuState', 0);	
 	$rootScope.$emit('changeNotifState', 1);	
+
+	$scope.addPrestations = function(){
+
+	}
+
+	$scope.addSocial =function(){
+
+	}
+
+	$scope.addCertifications = function(){
+		
+	}
 	$scope.list2 = {};
 	
 	Sortable({
