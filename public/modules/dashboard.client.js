@@ -57,7 +57,7 @@ dashboard.controller('sideController', ['$scope','$rootScope','$location','$time
 	});
 }]);
 
-dashboard.controller('notifController', ['$scope','$rootScope', 'storageData', function($scope, $rootScope, storageData){
+dashboard.controller('notifController', ['$scope','$rootScope', function($scope, $rootScope){
 	$rootScope.$on('changeNotifState', function(event,state){
 		if (state == 1 ) {
 			angular.element("#main-cart").removeClass("col-lg-12").addClass("col-lg-9");
@@ -65,20 +65,35 @@ dashboard.controller('notifController', ['$scope','$rootScope', 'storageData', f
 			angular.element("#main-cart").removeClass("col-lg-9").addClass("col-lg-12");
 		};
 		$scope.showNotifPanel = state;
-		$scope.data = storageData.get('userdata').biodata;
-		$scope.generatePdf = function(){
-			var editor = document.querySelector(".wrap-editor");
-			var jsonml = JsonML.fromHTML(editor);
-			console.log(jsonml);
-			$http.post('/templating/store', { email: $scope.data.email, template: jsonml})
-				.success(function(data){
-					console.log(data);
-				})
-				.error(function(err){
-					console.log(err);
-				});
-		}
+		
 	});
+	
+	$scope.generatePdf = function(){
+		var editor = document.querySelector(".wrap-editor");
+		var jsonml = JsonML.fromHTML(editor);
+		console.log(jsonml);
+		$http.post('/templating/store', { email: $scope.data.email, template: jsonml})
+			.success(function(data){
+				console.log(data);
+			})
+			.error(function(err){
+				console.log(err);
+			});
+	}
+
+	$scope.addPrestations = function(){
+		$rootScope.$emit('addPrestations', 1 );
+	}
+
+	$scope.addSocial =function(){
+		$rootScope.$emit('addSocial', 1 );
+	}
+
+	$scope.addCertifications = function(){
+		$rootScope.$emit('addCertifications', 1 );
+	}
+
+
 }]);
 
 dashboard.controller('dashboardMainController', ['$scope', '$rootScope', function($scope, $rootScope){
@@ -219,21 +234,33 @@ dashboard.controller('selectTemplateController', ['$location', '$scope', '$rootS
 	};
 }]);
 
-dashboard.controller('editTemplateController', ['$scope', '$rootScope', function($scope, $rootScope){
+dashboard.controller('editTemplateController', ['$scope', '$rootScope', 'storageData', function($scope, $rootScope, storageData){
 	$rootScope.$emit('changeMenuState', 0);	
 	$rootScope.$emit('changeNotifState', 1);	
 
-	$scope.addPrestations = function(){
+	$scope.data = storageData.get('userdata').biodata;
+	$scope.data.prestations = [];
+	$scope.data.socials = [];
+	$scope.data.certifications = [];
 
-	}
+	$rootScope.$on('addPrestations',function(event,data){
+		if (data == 1) {
+			$scope.data.prestations.push({tittle: undefined, description:undefined});
+		};
+	});
 
-	$scope.addSocial =function(){
+	$rootScope.$on('addSocial',function(event,data){
+		if (data == 1) {
+			$scope.data.socials.push({tittle: undefined, description:undefined});
+		};
+	});
 
-	}
+	$rootScope.$on('addCertifications',function(event,data){
+		if (data == 1) {
+			$scope.data.certifications.push({tittle: undefined, description:undefined});
+		};
+	});	
 
-	$scope.addCertifications = function(){
-		
-	}
 	$scope.list2 = {};
 	
 	Sortable({
