@@ -144,6 +144,10 @@ var UserSchema = new Schema({
 		type: Object,
 		require: false
 	},
+	header : {
+		type: Object,
+		require: false
+	},
 	isactive: {
 		type: Boolean
 	}

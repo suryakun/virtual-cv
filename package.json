@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "DOMBuilder": "^2.1.6",
     "angular-load": "^0.2.0",
     "async": "^0.9.0",
     "bcrypt": "^0.8.1",
@@ -25,6 +26,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-express": "^1.4.1",
     "grunt-express-server": "^0.4.19",
+    "html-pdf": "^1.1.0",
     "jsonml": "0.0.4",
     "jsonml-stringify": "^1.0.1",
     "moment": "^2.9.0",
