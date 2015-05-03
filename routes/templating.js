@@ -1,10 +1,12 @@
 var express = require('express'),
 	User = require('../models/usermodel'),
 	url = require('url'),
+	fs = require('fs'),
 	router = express.Router();	
 
 var DOMBuilder = require('DOMBuilder');
 var pdf = require('html-pdf');
+
 var options = {
 	filename :'./cv.pdf',
 	format: 'letter',
@@ -16,10 +18,10 @@ router.get('/',function(req,res){
 });
 
 router.post('/store', function(req,res){
-	var header = req.body.header;
 	var result = req.body.template;
 	var email = req.body.email;
-	var html,cv;	
+	var html,cv,header;	
+	var css = fs.readFileSync('./public/templates/testing/css/style.css','utf8');
 
 	User.findOne({'email': email}, function(error,user){
 		if (error) console.log(error);
@@ -28,13 +30,17 @@ router.post('/store', function(req,res){
 		user.save(function(err){
 			if (err) console.log(err);
 			cv = DOMBuilder.build(user.cv, 'html').toString();
-			header = DOMBuilder.build(user.header, 'html').toString();
+			// header = DOMBuilder.build(user.header, 'html').toString();
+			header = '<head><style>' + css + '</style></head>'
 			cv = '<body>' + cv + '</body>';		
 			cv = header + cv;
-			res.send(cv);
+			cv = '<html>' + cv + '</html>';		
+			cv = cv.toString();
+			// res.send(cv.substring(1,30));
 			pdf.create(cv,options).toFile(function(error,file){
 				if (error) console.log(error);
-				res.sendFile(file);
+				res.sendFile(file.filename);
+				// console.log(file);
 			});			
 		});
 
