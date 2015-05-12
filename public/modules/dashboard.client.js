@@ -34,7 +34,7 @@ dashboard.config(['$routeProvider', '$locationProvider', '$httpProvider', functi
 		})
 		.when('/edit-template', {
 			controller: 'editTemplateController',
-			templateUrl: '/templates/testing/default.html'
+			templateUrl: '/templates/cvku/index.html'
 		})
 		.otherwise({
 			redirectTo: '/register'
@@ -95,7 +95,7 @@ dashboard.controller('dashboardMainController', ['$scope', '$rootScope', functio
 dashboard.controller('registerController', ['$rootScope', '$scope', '$http', '$upload', '$timeout', '$location', 'storageData', function($rootScope, $scope, $http, $upload, $timeout, $location, storageData) {
 
 	$rootScope.$emit('changeMenuState', 0);
-	$rootScope.$emit('changeNotifState', 1);
+	$rootScope.$emit('changeNotifState', 0);
 
 	/* Biodata user model */
 	$scope.bio = {
